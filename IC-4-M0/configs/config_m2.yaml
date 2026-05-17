@@ -1,0 +1,54 @@
+# IC-4-M2: Boundary Diagnostic & Constrained Steering Selection
+# Fine alpha sweep around M1's best point (layer=12) with constrained selection.
+#
+# Two presets:
+#   smoke  -- fast, ~15-25 min for verification (default below)
+#   full   -- comprehensive, ~3-5 hours (uncomment to use)
+#
+# Usage:
+#   python -m src.run_m2 --config configs/config_m2.yaml          # smoke
+#   python -m src.run_m2 --config configs/config_m2.yaml --full   # full sweep
+
+model:
+  name: "Qwen/Qwen2.5-0.5B-Instruct"
+  device: "auto"
+  torch_dtype: "float16"
+
+data:
+  train_size: 60
+  test_size: 120
+  train_path: "data_m2/train.jsonl"
+  test_path: "data_m2/test.jsonl"
+
+activation:
+  token_position: "last"
+
+steering:
+  vector_type: "difference"
+  seeds: [0]
+  layers: [11, 12, 13]
+  alphas: [-1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, 0.0]
+
+generation:
+  max_new_tokens: 48
+  temperature: 0.0
+  do_sample: false
+
+output:
+  results_dir: "results_m2"
+  reports_dir: "reports_m2"
+
+# ──────────────────────────────────────────────────
+# Full config (uncomment and comment-out smoke above):
+# ──────────────────────────────────────────────────
+# data:
+#   train_size: 120
+#   test_size: 240
+#   train_path: "data_m2/train.jsonl"
+#   test_path: "data_m2/test.jsonl"
+#
+# steering:
+#   vector_type: "difference"
+#   seeds: [0, 1, 2]
+#   layers: [10, 11, 12, 13, 14]
+#   alphas: [-1.25, -1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, 0.0]

@@ -1,0 +1,43 @@
+IC-4-M5 P3-B/C FACTUALITY GATE REPORT
+========================================================
+
+                          mode  n  n_correct  factual_error_rate  correct_answer_rate  avg_output_len  seed  layer  alpha vector_type scenario
+                          base 30         13            0.566667             0.433333      163.200000     0     12    0.0        none standard
+  oracle_factuality_gate_a-0.8 30         13            0.566667             0.433333      163.333333     0     12   -0.8    steering standard
+    real_factuality_gate_a-0.8 30         13            0.566667             0.433333      165.666667     0     12   -0.8    steering standard
+  random_factuality_gate_a-0.8 30         13            0.566667             0.433333      158.766667     0     12   -0.8      random standard
+shuffled_factuality_gate_a-0.8 30         13            0.566667             0.433333      165.300000     0     12   -0.8    shuffled standard
+  oracle_factuality_gate_a-1.0 30         13            0.566667             0.433333      160.400000     0     12   -1.0    steering standard
+    real_factuality_gate_a-1.0 30         13            0.566667             0.433333      166.600000     0     12   -1.0    steering standard
+  random_factuality_gate_a-1.0 30         13            0.566667             0.433333      158.666667     0     12   -1.0      random standard
+shuffled_factuality_gate_a-1.0 30         13            0.566667             0.433333      166.133333     0     12   -1.0    shuffled standard
+  oracle_factuality_gate_a-1.2 30         13            0.566667             0.433333      157.833333     0     12   -1.2    steering standard
+    real_factuality_gate_a-1.2 30         13            0.566667             0.433333      166.300000     0     12   -1.2    steering standard
+  random_factuality_gate_a-1.2 30         13            0.566667             0.433333      158.500000     0     12   -1.2      random standard
+shuffled_factuality_gate_a-1.2 30         13            0.566667             0.433333      164.100000     0     12   -1.2    shuffled standard
+                          base 30         13            0.566667             0.433333      171.900000     1     12    0.0        none standard
+  oracle_factuality_gate_a-0.8 30         14            0.533333             0.466667      169.300000     1     12   -0.8    steering standard
+    real_factuality_gate_a-0.8 30         14            0.533333             0.466667      166.633333     1     12   -0.8    steering standard
+  random_factuality_gate_a-0.8 30         13            0.566667             0.433333      173.700000     1     12   -0.8      random standard
+shuffled_factuality_gate_a-0.8 30         14            0.533333             0.466667      161.166667     1     12   -0.8    shuffled standard
+  oracle_factuality_gate_a-1.0 30         15            0.500000             0.500000      170.000000     1     12   -1.0    steering standard
+    real_factuality_gate_a-1.0 30         14            0.533333             0.466667      166.700000     1     12   -1.0    steering standard
+  random_factuality_gate_a-1.0 30         12            0.600000             0.400000      175.133333     1     12   -1.0      random standard
+shuffled_factuality_gate_a-1.0 30         15            0.500000             0.500000      157.566667     1     12   -1.0    shuffled standard
+  oracle_factuality_gate_a-1.2 30         13            0.566667             0.433333      174.033333     1     12   -1.2    steering standard
+    real_factuality_gate_a-1.2 30         13            0.566667             0.433333      169.666667     1     12   -1.2    steering standard
+  random_factuality_gate_a-1.2 30         13            0.566667             0.433333      171.933333     1     12   -1.2      random standard
+shuffled_factuality_gate_a-1.2 30         15            0.500000             0.500000      152.666667     1     12   -1.2    shuffled standard
+                          base 30         13            0.566667             0.433333      184.433333     2     12    0.0        none standard
+  oracle_factuality_gate_a-0.8 30         13            0.566667             0.433333      168.900000     2     12   -0.8    steering standard
+    real_factuality_gate_a-0.8 30         13            0.566667             0.433333      178.933333     2     12   -0.8    steering standard
+  random_factuality_gate_a-0.8 30         13            0.566667             0.433333      187.266667     2     12   -0.8      random standard
+shuffled_factuality_gate_a-0.8 30         13            0.566667             0.433333      182.633333     2     12   -0.8    shuffled standard
+  oracle_factuality_gate_a-1.0 30         13            0.566667             0.433333      175.366667     2     12   -1.0    steering standard
+    real_factuality_gate_a-1.0 30         13            0.566667             0.433333      184.533333     2     12   -1.0    steering standard
+  random_factuality_gate_a-1.0 30         13            0.566667             0.433333      188.900000     2     12   -1.0      random standard
+shuffled_factuality_gate_a-1.0 30         13            0.566667             0.433333      183.433333     2     12   -1.0    shuffled standard
+  oracle_factuality_gate_a-1.2 30         13            0.566667             0.433333      176.133333     2     12   -1.2    steering standard
+    real_factuality_gate_a-1.2 30         13            0.566667             0.433333      183.666667     2     12   -1.2    steering standard
+  random_factuality_gate_a-1.2 30         13            0.566667             0.433333      194.166667     2     12   -1.2      random standard
+shuffled_factuality_gate_a-1.2 30         13            0.566667             0.433333      181.033333     2     12   -1.2    shuffled standard

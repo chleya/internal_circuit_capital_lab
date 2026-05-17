@@ -1,0 +1,14 @@
+seed,layer,mode,alpha,vector_type,hallucination_rate,calibrated_abstention_rate,correct_answer_rate,unnecessary_abstention_rate,answerable_count,unanswerable_count,hallucination_count,calibrated_abstention_count,correct_count,unnecessary_abstention_count
+0,-1,base,0.0,none,0.8667,0.0667,0.6,0.0,30,30,26,2,18,0
+0,-1,prompt_only,0.0,none,0.4,0.1333,0.0667,0.2,30,30,12,4,2,6
+0,12,steering_a-1.0,-1.0,steering,0.6667,0.1,0.5333,0.0667,30,30,20,3,16,2
+0,12,oracle_gate_a-1.0,-1.0,steering,0.6667,0.1,0.6,0.0,30,30,20,3,18,0
+0,12,prefill_probe_gate_a-1.0_last_prompt_token,-1.0,steering,1.0,0.0,0.7333,0.0,30,30,30,0,22,0
+0,12,random_prefill_probe_gate_a-1.0_last_prompt_token,-1.0,random,1.0,0.0,0.7333,0.0,30,30,30,0,22,0
+0,12,shuffled_prefill_probe_gate_a-1.0_last_prompt_token,-1.0,shuffled,0.9667,0.0333,0.7333,0.0,30,30,29,1,22,0
+0,12,prefill_probe_gate_a-1.0_mean_pooled,-1.0,steering,1.0,0.0,0.7333,0.0,30,30,30,0,22,0
+0,12,random_prefill_probe_gate_a-1.0_mean_pooled,-1.0,random,1.0,0.0,0.7333,0.0,30,30,30,0,22,0
+0,12,shuffled_prefill_probe_gate_a-1.0_mean_pooled,-1.0,shuffled,0.9667,0.0333,0.7333,0.0,30,30,29,1,22,0
+0,12,prefill_probe_gate_a-1.0_question_span_pooled,-1.0,steering,1.0,0.0,0.7333,0.0,30,30,30,0,22,0
+0,12,random_prefill_probe_gate_a-1.0_question_span_pooled,-1.0,random,1.0,0.0,0.7333,0.0,30,30,30,0,22,0
+0,12,shuffled_prefill_probe_gate_a-1.0_question_span_pooled,-1.0,shuffled,0.9667,0.0333,0.7333,0.0,30,30,29,1,22,0

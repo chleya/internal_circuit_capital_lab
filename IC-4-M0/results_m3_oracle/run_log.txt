@@ -1,0 +1,73 @@
+============================================================
+IC-4-M3-O: Oracle-Gated Steering (Smoke)
+============================================================
+
+Config: seed=[0], layer=[12], alphas=[-1.1, -1.0, -0.9]
+Data: train=30, test=60
+Estimated evaluations: 10 (base+po + open_loop×3 + oracle_gate×3 + 2 controls)
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Loading cached data for seed 0
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded: 30 pairs, dim=896
+
+  Open-loop steering:
+    open_a-1.10: H=0.700 C=0.567 UA=0.100
+    open_a-1.00: H=0.667 C=0.533 UA=0.067
+    open_a-0.90: H=0.800 C=0.533 UA=0.033
+
+  Oracle-gated steering:
+    oracle_a-1.10: H=0.700 C=0.600 UA=0.000
+    oracle_a-1.00: H=0.667 C=0.600 UA=0.000
+    oracle_a-0.90: H=0.800 C=0.600 UA=0.000
+
+  Control oracle-gated:
+    random_oracle_a-1.00: H=0.933 C=0.600 UA=0.000
+    shuffled_oracle_a-1.00: H=0.800 C=0.600 UA=0.000
+    layer 12 done in 2396s
+
+Total time: 2397s (39.9 min)
+
+Raw metrics saved to results_m3_oracle\metrics_raw.csv (10 rows)
+Per-sample CSV saved to results_m3_oracle\per_sample_oracle.csv (600 rows)
+
+============================================================
+COMPARISON: Open-Loop vs Oracle-Gated
+============================================================
+Mode                                H        C       UA     Vector
+---------------------------- -------- -------- -------- ----------
+base                            0.867    0.600    0.000       none
+prompt_only                     0.400    0.067    0.200       none
+steering_a-1.1                  0.700    0.567    0.100   steering
+steering_a-1.0                  0.667    0.533    0.067   steering
+steering_a-0.9                  0.800    0.533    0.033   steering
+oracle_gate_a-1.1               0.700    0.600    0.000   steering
+oracle_gate_a-1.0               0.667    0.600    0.000   steering
+oracle_gate_a-0.9               0.800    0.600    0.000   steering
+random_oracle_gate_a-1.0        0.933    0.600    0.000     random
+shuffled_oracle_gate_a-1.0      0.800    0.600    0.000   shuffled
+
+============================================================
+VERDICT: IC4_M3_ORACLE_GATE_SUCCESS
+============================================================
+Reason: Oracle gate succeeds: with perfect gate, steering vector reduces H from 0.867 to 0.667 (dH=-0.200) while C stays at 0.600 (base C=0.600) and UA at 0.000 (base UA=0.000). Best alpha=-1.00. Controller/gating signal route is worth pursuing.
+
+Report saved to reports_m3_oracle\IC4_M3_ORACLE_GATE_REPORT.md
+
+============================================================
+IC-4-M3-O complete. Verdict: IC4_M3_ORACLE_GATE_SUCCESS
+============================================================

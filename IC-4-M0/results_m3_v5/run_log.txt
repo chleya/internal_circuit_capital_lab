@@ -1,0 +1,85 @@
+============================================================
+IC-4-M3-v5: Artifact Decomposition for Valid Prefill Gate
+============================================================
+Config: seed=[0], layer=[12], alpha_max=-1.0
+Probe representations: ['last_prompt_token'], tiny_alpha=-0.02
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  seed=0: train 15A+15U, test 30A+30U
+
+  --- BASELINES ---
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded 30 pairs, dim=896
+    Steering a=-1.00 (single-pass open loop)...
+      single_pass_open_loop: H=0.667 C=0.533 UA=0.067
+    Oracle gate...
+      oracle: H=0.667 C=0.600 UA=0.000
+
+  --- TWO-PASS ARTIFACT DECOMPOSITION ---
+    two_pass_base_no_steering (alpha=0, no hook at all)...
+      two_pass_base: H=1.000 C=0.733 UA=0.000
+    two_pass_tiny_alpha_only (alpha=-0.02 on all samples)...
+      two_pass_tiny: H=1.000 C=0.733 UA=0.000
+    two_pass_open_loop_full_alpha (alpha=-1.00 on all samples)...
+      two_pass_open_loop: H=0.800 C=0.733 UA=0.000
+
+  --- Representation: last_prompt_token ---
+    Phase A: Training probe [last_prompt_token]...
+      Collected: X=(30, 896), y pos/neg=15/15
+      Probe [last_prompt_token]: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+    Phase B1: SOFT prefill probe gate [last_prompt_token]...
+      soft_gate: H=0.833 C=0.733 UA=0.000
+    Random soft probe gate [last_prompt_token]...
+      random_soft: H=1.000 C=0.733
+    Shuffled soft probe gate [last_prompt_token]...
+      shuffled_soft: H=1.000 C=0.733
+    Phase B2: HARD prefill probe gate [last_prompt_token]...
+      hard_gate: H=0.800 C=0.733 UA=0.000
+    Random hard probe gate [last_prompt_token]...
+      random_hard: H=1.000 C=0.733
+    Shuffled hard probe gate [last_prompt_token]...
+      shuffled_hard: H=1.000 C=0.733
+    layer 12 done in 3102s
+
+Total time: 3693s (61.6 min)
+
+Metrics saved to results_m3_v5\metrics_raw.csv (13 rows)
+Per-sample predictions [soft_last_prompt_token] saved to results_m3_v5\per_sample_predictions_soft_last_prompt_token.csv (60 rows)
+Probe evaluation saved to results_m3_v5\probe_evaluation.csv
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                          H=0.867 C=0.600 UA=0.000
+  prompt_only                                   H=0.400 C=0.067 UA=0.200
+  steering_a-1.00                               H=0.667 C=0.533 UA=0.067
+  oracle_gate_a-1.0                             H=0.667 C=0.600 UA=0.000
+  two_pass_base_no_steering                     H=1.000 C=0.733 UA=0.000
+  two_pass_tiny_alpha-0.02                      H=1.000 C=0.733 UA=0.000
+  two_pass_open_loop_full_alpha-1.00            H=0.800 C=0.733 UA=0.000
+  soft_prefill_probe_gate_a-1.0                 H=0.833 C=0.733 UA=0.000
+  random_soft_prefill_probe_gate_a-1.0          H=1.000 C=0.733 UA=0.000
+  shuffled_soft_prefill_probe_gate_a-1.0        H=1.000 C=0.733 UA=0.000
+  hard_prefill_probe_gate_a-1.0                 H=0.800 C=0.733 UA=0.000
+  random_hard_prefill_probe_gate_a-1.0          H=1.000 C=0.733 UA=0.000
+  shuffled_hard_prefill_probe_gate_a-1.0        H=1.000 C=0.733 UA=0.000
+
+============================================================
+VERDICT: IC4_M3_V5_PIPELINE_ARTIFACT_CONFIRMED
+============================================================
+Reason: Two-pass pipeline itself changes C: base C=0.600, two_pass_base C=0.733 (dC=+0.133). Tiny alpha C=0.733 (dC=+0.133). Pipeline artifact is the primary C elevation source.
+
+Report saved to reports_m3_v5\IC4_M3_V5_ARTIFACT_DECOMPOSITION_REPORT.md
+
+IC-4-M3-v5 complete. Verdict: IC4_M3_V5_PIPELINE_ARTIFACT_CONFIRMED

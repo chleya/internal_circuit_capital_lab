@@ -1,0 +1,70 @@
+============================================================
+IC-4-M4: Trajectory-State Diagnostic
+============================================================
+
+Config: seed=[0], layer=[12], max_k=48, window=(4, 8)
+Data: test=60
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Loading cached M3 test data for seed 0
+  seed=0: test 30A+30U
+
+  LAYER 12 — collecting hidden states for 60 samples
+    collected 20/60
+    collected 40/60
+    collected 60/60
+  LAYER 12 done
+
+Total time: 257s (4.3 min)
+
+Building representations...
+Evaluating representations...
+
+Classification results saved to results_m4\representation_classification.csv
+Raw hidden states saved to results_m4\hidden_state_collection.npz
+
+============================================================
+REPRESENTATION COMPARISON
+============================================================
+Task                             Representation       Accuracy        Std
+-------------------------------- ---------------- ------------ ----------
+answerable_vs_unanswerable       last-token           0.7333     0.0972
+will_hallucinate                 last-token           0.9333     0.0816
+should_gate_on                   last-token           0.7333     0.0972
+answerable_vs_unanswerable       mean-pooled          0.9667     0.0408
+will_hallucinate                 mean-pooled          0.9667     0.0667
+should_gate_on                   mean-pooled          0.9667     0.0408
+answerable_vs_unanswerable       window-4             1.0000     0.0000
+will_hallucinate                 window-4             0.9667     0.0667
+should_gate_on                   window-4             1.0000     0.0000
+answerable_vs_unanswerable       window-8             0.9667     0.0408
+will_hallucinate                 window-8             0.9000     0.0816
+should_gate_on                   window-8             0.9667     0.0408
+
+  answerable_vs_unanswerable: best = window-4 (acc=1.0000)
+
+  will_hallucinate: best = mean-pooled (acc=0.9667)
+
+  should_gate_on: best = window-4 (acc=1.0000)
+
+============================================================
+SUMMARY
+============================================================
+  last-token: avg acc across tasks = 0.8000
+  mean-pooled: avg acc across tasks = 0.9667
+  window-4: avg acc across tasks = 0.9889
+  window-8: avg acc across tasks = 0.9445
+
+  => Best representation: window-4 (avg acc=0.9889)
+  => Mechanism appears TRAJECTORY-LEVEL, not token-local trigger.
+
+Report saved to reports_m4\IC4_M4_TRAJECTORY_STATE_REPORT.md
+
+============================================================
+IC-4-M4 complete.
+============================================================

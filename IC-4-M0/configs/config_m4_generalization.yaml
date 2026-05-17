@@ -1,0 +1,31 @@
+# IC-4-M4-Generalization: Robustness validation of M3-v6 gate mechanism.
+# Sweep seeds × layers × alpha to verify the single-pass hook-based hard gate
+# is stable across configurations, not just one lucky setting.
+
+model:
+  name: Qwen/Qwen2.5-0.5B-Instruct
+  device: cpu
+  torch_dtype: float32
+
+sweep:
+  seeds: [0, 1, 2]
+  layers: [11, 12, 13]
+  primary_alpha: -1.0
+  extra_alphas: [-0.8, -1.2]
+
+probe:
+  layer: null
+  model: logistic
+  representations: [last_prompt_token]
+  steepness: 10.0
+  threshold: 0.5
+  cv_folds: 3
+
+generation:
+  max_new_tokens: 48
+  temperature: 0.0
+  do_sample: false
+
+output:
+  results_dir: results_m4_generalization
+  reports_dir: reports_m4_generalization

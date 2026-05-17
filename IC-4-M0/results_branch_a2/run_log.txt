@@ -1,0 +1,305 @@
+======================================================================
+Branch A2: Probe Degradation Curve and Soft-Gate Robustness
+======================================================================
+Mode: primary
+
+[1/3] Loading model...
+  Loaded in 229s
+
+[2/3] Loading steering vectors...
+  Steering dim: 896
+n_list from args: [5]
+======================================================================
+PRIMARY EXPERIMENT: Standard Test Set (seed=0)
+======================================================================
+Filtered n_list: [5]
+Full train: 30 (15A+15U)
+Test: 60 (30A+30U)
+Resume mode: 8 already-completed (n,rep) found, will skip.
+
+==================================================
+n_per_class=5, repeats=5, gates=['hard', 'soft_T0.1', 'soft_T0.3', 'confidence_aware']
+==================================================
+  rep=0 SKIP (already completed)
+  rep=1 SKIP (already completed)
+  rep=2 SKIP (already completed)
+  rep=3 SKIP (already completed)
+======================================================================
+Branch A2: Probe Degradation Curve and Soft-Gate Robustness
+======================================================================
+Mode: primary
+
+[1/3] Loading model...
+  Loaded in 61s
+
+[2/3] Loading steering vectors...
+  Steering dim: 896
+n_list from args: [5]
+======================================================================
+PRIMARY EXPERIMENT: Standard Test Set (seed=0)
+======================================================================
+Filtered n_list: [5]
+Full train: 30 (15A+15U)
+Test: 60 (30A+30U)
+Resume mode: 8 already-completed (n,rep) found, will skip.
+
+==================================================
+n_per_class=5, repeats=5, gates=['hard', 'soft_T0.1', 'soft_T0.3', 'confidence_aware']
+==================================================
+  rep=0 SKIP (already completed)
+  rep=1 SKIP (already completed)
+  rep=2 SKIP (already completed)
+  rep=3 SKIP (already completed)
+  rep=4 seed=1504 probe_acc=0.983 hard                 H=0.667 C=0.633 UA=0.000 gap=-0.000 gate_on=31
+  rep=4 seed=1504 probe_acc=0.983 soft_T0.1            H=0.667 C=0.633 UA=0.000 gap=-0.000 gate_on=38
+  rep=4 seed=1504 probe_acc=0.983 soft_T0.3            H=0.833 C=0.567 UA=0.000 gap=+0.166 gate_on=60
+  rep=4 seed=1504 probe_acc=0.983 confidence_aware     H=0.667 C=0.600 UA=0.000 gap=-0.000 gate_on=30
+
+Primary experiment complete: 979s (16.3 min)
+Full dataset saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\degradation_curve.json
+
+[3/3] Generating report...
+
+======================================================================
+AGGREGATE STATISTICS (by n_per_class × gate_type)
+======================================================================
+n    gate                 n_tr  p_acc        H            UA           gap          gate_on   
+----------------------------------------------------------------------------------------------
+5    confidence_aware     6     0.994±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+5    hard                 6     0.994±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 30.3±0.5  
+5    soft_T0.1            6     0.994±0.008  0.678±0.016  0.000±0.000  +0.011±0.016 35.7±2.4  
+5    soft_T0.3            6     0.994±0.008  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+7    hard                 2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 30.5±0.5  
+7    soft_T0.1            2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 40.5±3.5  
+7    soft_T0.3            2     0.992±0.008  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+10   hard                 1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 31.0±0.0  
+10   soft_T0.1            1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 35.0±0.0  
+15   hard                 1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+15   soft_T0.1            1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 34.0±0.0  
+
+Report saved to F:\internal_circuit_capital_lab\IC-4-M0\reports_branch_a2\BRANCH_A2_DEGRADATION_REPORT.md
+Aggregate stats saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\aggregate_stats.csv
+Raw data saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\degradation_curve.csv
+
+======================================================================
+PRELIMINARY VERDICT (to be confirmed by aggregate stats)
+======================================================================
+  n=5: hard(H=0.667, UA=0.000) vs soft_T0.1(H=0.678, UA=0.000)
+
+Done.
+======================================================================
+Branch A2: Probe Degradation Curve and Soft-Gate Robustness
+======================================================================
+Mode: primary
+
+[1/3] Loading model...
+  Loaded in 25s
+
+[2/3] Loading steering vectors...
+  Steering dim: 896
+n_list from args: [3]
+======================================================================
+PRIMARY EXPERIMENT: Standard Test Set (seed=0)
+======================================================================
+Filtered n_list: [3]
+Full train: 30 (15A+15U)
+Test: 60 (30A+30U)
+Resume mode: 9 already-completed (n,rep) found, will skip.
+
+==================================================
+n_per_class=3, repeats=5, gates=['hard', 'soft_T0.1', 'soft_T0.3', 'confidence_aware']
+==================================================
+  rep=0 seed=1300 probe_acc=0.967 hard                 H=0.667 C=0.633 UA=0.000 gap=-0.000 gate_on=32
+  rep=0 seed=1300 probe_acc=0.967 soft_T0.1            H=0.667 C=0.633 UA=0.000 gap=-0.000 gate_on=41
+  rep=0 seed=1300 probe_acc=0.967 soft_T0.3            H=0.833 C=0.567 UA=0.000 gap=+0.166 gate_on=60
+  rep=0 seed=1300 probe_acc=0.967 confidence_aware     H=0.667 C=0.600 UA=0.000 gap=-0.000 gate_on=30
+  rep=1 seed=1301 probe_acc=0.783 hard                 H=0.800 C=0.600 UA=0.000 gap=+0.133 gate_on=17
+  rep=1 seed=1301 probe_acc=0.783 soft_T0.1            H=0.833 C=0.600 UA=0.000 gap=+0.166 gate_on=44
+  rep=1 seed=1301 probe_acc=0.783 soft_T0.3            H=0.867 C=0.533 UA=0.000 gap=+0.200 gate_on=60
+  rep=1 seed=1301 probe_acc=0.783 confidence_aware     H=0.833 C=0.600 UA=0.000 gap=+0.166 gate_on=15
+  rep=2 seed=1302 probe_acc=0.917 hard                 H=0.667 C=0.633 UA=0.033 gap=-0.000 gate_on=35
+  rep=2 seed=1302 probe_acc=0.917 soft_T0.1            H=0.667 C=0.633 UA=0.033 gap=-0.000 gate_on=44
+  rep=2 seed=1302 probe_acc=0.917 soft_T0.3            H=0.833 C=0.533 UA=0.000 gap=+0.166 gate_on=60
+  rep=2 seed=1302 probe_acc=0.917 confidence_aware     H=0.667 C=0.600 UA=0.033 gap=-0.000 gate_on=31
+  rep=3 seed=1303 probe_acc=0.967 hard                 H=0.700 C=0.600 UA=0.000 gap=+0.033 gate_on=28
+  rep=3 seed=1303 probe_acc=0.967 soft_T0.1            H=0.733 C=0.600 UA=0.000 gap=+0.066 gate_on=36
+  rep=3 seed=1303 probe_acc=0.967 soft_T0.3            H=0.833 C=0.533 UA=0.000 gap=+0.166 gate_on=60
+  rep=3 seed=1303 probe_acc=0.967 confidence_aware     H=0.700 C=0.600 UA=0.000 gap=+0.033 gate_on=24
+  rep=4 seed=1304 probe_acc=0.883 hard                 H=0.667 C=0.533 UA=0.000 gap=-0.000 gate_on=37
+  rep=4 seed=1304 probe_acc=0.883 soft_T0.1            H=0.667 C=0.567 UA=0.000 gap=-0.000 gate_on=46
+  rep=4 seed=1304 probe_acc=0.883 soft_T0.3            H=0.833 C=0.567 UA=0.000 gap=+0.166 gate_on=60
+  rep=4 seed=1304 probe_acc=0.883 confidence_aware     H=0.667 C=0.600 UA=0.000 gap=-0.000 gate_on=31
+
+Primary experiment complete: 4764s (79.4 min)
+Full dataset saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\degradation_curve.json
+
+[3/3] Generating report...
+
+======================================================================
+AGGREGATE STATISTICS (by n_per_class × gate_type)
+======================================================================
+n    gate                 n_tr  p_acc        H            UA           gap          gate_on   
+----------------------------------------------------------------------------------------------
+3    confidence_aware     10    0.903±0.068  0.707±0.065  0.007±0.013  +0.040±0.065 26.2±6.2  
+3    hard                 10    0.903±0.068  0.700±0.052  0.007±0.013  +0.033±0.052 29.8±7.1  
+3    soft_T0.1            10    0.903±0.068  0.713±0.065  0.007±0.013  +0.046±0.065 42.2±3.5  
+3    soft_T0.3            10    0.903±0.068  0.840±0.013  0.000±0.000  +0.173±0.013 60.0±0.0  
+5    confidence_aware     5     0.997±0.007  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+5    hard                 5     0.997±0.007  0.667±0.000  0.000±0.000  -0.000±0.000 30.2±0.4  
+5    soft_T0.1            5     0.997±0.007  0.680±0.016  0.000±0.000  +0.013±0.016 35.2±2.3  
+5    soft_T0.3            5     0.997±0.007  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+7    hard                 2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 30.5±0.5  
+7    soft_T0.1            2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 40.5±3.5  
+7    soft_T0.3            2     0.992±0.008  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+10   hard                 1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 31.0±0.0  
+10   soft_T0.1            1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 35.0±0.0  
+15   hard                 1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+15   soft_T0.1            1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 34.0±0.0  
+
+Report saved to F:\internal_circuit_capital_lab\IC-4-M0\reports_branch_a2\BRANCH_A2_DEGRADATION_REPORT.md
+Aggregate stats saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\aggregate_stats.csv
+Raw data saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\degradation_curve.csv
+
+======================================================================
+PRELIMINARY VERDICT (to be confirmed by aggregate stats)
+======================================================================
+  n=5: hard(H=0.667, UA=0.000) vs soft_T0.1(H=0.680, UA=0.000)
+  n=3: hard(H=0.700, UA=0.007) vs soft_T0.1(H=0.713, UA=0.007)
+
+Done.
+======================================================================
+Branch A2: Probe Degradation Curve and Soft-Gate Robustness
+======================================================================
+Mode: primary
+
+[1/3] Loading model...
+  Loaded in 6s
+
+[2/3] Loading steering vectors...
+  Steering dim: 896
+n_list from args: [2]
+======================================================================
+PRIMARY EXPERIMENT: Standard Test Set (seed=0)
+======================================================================
+Filtered n_list: [2]
+Full train: 30 (15A+15U)
+Test: 60 (30A+30U)
+Resume mode: 14 already-completed (n,rep) found, will skip.
+
+==================================================
+n_per_class=2, repeats=5, gates=['hard', 'soft_T0.1', 'soft_T0.3']
+==================================================
+  rep=0 seed=1200 probe_acc=0.983 hard                 H=0.700 C=0.600 UA=0.000 gap=+0.033 gate_on=29
+  rep=0 seed=1200 probe_acc=0.983 soft_T0.1            H=0.833 C=0.567 UA=0.000 gap=+0.166 gate_on=44
+  rep=0 seed=1200 probe_acc=0.983 soft_T0.3            H=0.867 C=0.533 UA=0.000 gap=+0.200 gate_on=60
+  rep=1 seed=1201 probe_acc=0.950 hard                 H=0.667 C=0.600 UA=0.000 gap=-0.000 gate_on=31
+  rep=1 seed=1201 probe_acc=0.950 soft_T0.1            H=0.667 C=0.600 UA=0.000 gap=-0.000 gate_on=43
+  rep=1 seed=1201 probe_acc=0.950 soft_T0.3            H=0.833 C=0.533 UA=0.000 gap=+0.166 gate_on=60
+  rep=2 seed=1202 probe_acc=0.700 hard                 H=0.767 C=0.633 UA=0.000 gap=+0.100 gate_on=16
+  rep=2 seed=1202 probe_acc=0.700 soft_T0.1            H=0.833 C=0.633 UA=0.000 gap=+0.166 gate_on=46
+  rep=2 seed=1202 probe_acc=0.700 soft_T0.3            H=0.833 C=0.600 UA=0.000 gap=+0.166 gate_on=60
+  rep=3 seed=1203 probe_acc=1.000 hard                 H=0.667 C=0.600 UA=0.000 gap=-0.000 gate_on=30
+  rep=3 seed=1203 probe_acc=1.000 soft_T0.1            H=0.733 C=0.567 UA=0.000 gap=+0.066 gate_on=43
+  rep=3 seed=1203 probe_acc=1.000 soft_T0.3            H=0.833 C=0.567 UA=0.000 gap=+0.166 gate_on=60
+  rep=4 seed=1204 probe_acc=0.767 hard                 H=0.667 C=0.567 UA=0.033 gap=-0.000 gate_on=44
+  rep=4 seed=1204 probe_acc=0.767 soft_T0.1            H=0.667 C=0.567 UA=0.033 gap=-0.000 gate_on=47
+  rep=4 seed=1204 probe_acc=0.767 soft_T0.3            H=0.833 C=0.533 UA=0.033 gap=+0.166 gate_on=60
+
+Primary experiment complete: 3675s (61.2 min)
+Full dataset saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\degradation_curve.json
+
+[3/3] Generating report...
+
+======================================================================
+AGGREGATE STATISTICS (by n_per_class × gate_type)
+======================================================================
+n    gate                 n_tr  p_acc        H            UA           gap          gate_on   
+----------------------------------------------------------------------------------------------
+2    hard                 5     0.880±0.123  0.693±0.039  0.007±0.013  +0.026±0.039 30.0±8.9  
+2    soft_T0.1            5     0.880±0.123  0.747±0.075  0.007±0.013  +0.080±0.075 44.6±1.6  
+2    soft_T0.3            5     0.880±0.123  0.840±0.013  0.007±0.013  +0.173±0.013 60.0±0.0  
+3    confidence_aware     5     0.903±0.068  0.707±0.065  0.007±0.013  +0.040±0.065 26.2±6.2  
+3    hard                 5     0.903±0.068  0.700±0.052  0.007±0.013  +0.033±0.052 29.8±7.1  
+3    soft_T0.1            5     0.903±0.068  0.713±0.065  0.007±0.013  +0.046±0.065 42.2±3.5  
+3    soft_T0.3            5     0.903±0.068  0.840±0.013  0.000±0.000  +0.173±0.013 60.0±0.0  
+5    confidence_aware     5     0.997±0.007  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+5    hard                 5     0.997±0.007  0.667±0.000  0.000±0.000  -0.000±0.000 30.2±0.4  
+5    soft_T0.1            5     0.997±0.007  0.680±0.016  0.000±0.000  +0.013±0.016 35.2±2.3  
+5    soft_T0.3            5     0.997±0.007  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+7    hard                 2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 30.5±0.5  
+7    soft_T0.1            2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 40.5±3.5  
+7    soft_T0.3            2     0.992±0.008  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+10   hard                 1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 31.0±0.0  
+10   soft_T0.1            1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 35.0±0.0  
+15   hard                 1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+15   soft_T0.1            1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 34.0±0.0  
+
+Report saved to F:\internal_circuit_capital_lab\IC-4-M0\reports_branch_a2\BRANCH_A2_DEGRADATION_REPORT.md
+Aggregate stats saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\aggregate_stats.csv
+Raw data saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\degradation_curve.csv
+
+======================================================================
+PRELIMINARY VERDICT (to be confirmed by aggregate stats)
+======================================================================
+  n=5: hard(H=0.667, UA=0.000) vs soft_T0.1(H=0.680, UA=0.000)
+  n=3: hard(H=0.700, UA=0.007) vs soft_T0.1(H=0.713, UA=0.007)
+  n=2: hard(H=0.693, UA=0.007) vs soft_T0.1(H=0.747, UA=0.007)
+
+Done.
+======================================================================
+Branch A2: Probe Degradation Curve and Soft-Gate Robustness
+======================================================================
+Mode: harder
+
+[1/3] Loading model...
+  Loaded in 6s
+
+[2/3] Loading steering vectors...
+  Steering dim: 896
+
+======================================================================
+HARDER EVALUATION: Hard OOD Test Set (seed=0, n_per_class=5)
+======================================================================
+Train: 30 (15A+15U)
+Test: 120 (60A+60U)
+  probe_acc=1.000 hard                 H=0.733 C=0.583 UA=0.000 gap=+0.066 gate_on=60
+  probe_acc=1.000 soft_T0.1            H=0.733 C=0.583 UA=0.000 gap=+0.066 gate_on=89
+
+[3/3] Generating report...
+
+======================================================================
+AGGREGATE STATISTICS (by n_per_class × gate_type)
+======================================================================
+n    gate                 n_tr  p_acc        H            UA           gap          gate_on   
+----------------------------------------------------------------------------------------------
+2    hard                 5     0.880±0.123  0.693±0.039  0.007±0.013  +0.026±0.039 30.0±8.9  
+2    soft_T0.1            5     0.880±0.123  0.747±0.075  0.007±0.013  +0.080±0.075 44.6±1.6  
+2    soft_T0.3            5     0.880±0.123  0.840±0.013  0.007±0.013  +0.173±0.013 60.0±0.0  
+3    confidence_aware     5     0.903±0.068  0.707±0.065  0.007±0.013  +0.040±0.065 26.2±6.2  
+3    hard                 5     0.903±0.068  0.700±0.052  0.007±0.013  +0.033±0.052 29.8±7.1  
+3    soft_T0.1            5     0.903±0.068  0.713±0.065  0.007±0.013  +0.046±0.065 42.2±3.5  
+3    soft_T0.3            5     0.903±0.068  0.840±0.013  0.000±0.000  +0.173±0.013 60.0±0.0  
+5    confidence_aware     5     0.997±0.007  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+5    hard                 5     0.997±0.007  0.667±0.000  0.000±0.000  -0.000±0.000 30.2±0.4  
+5    soft_T0.1            5     0.997±0.007  0.680±0.016  0.000±0.000  +0.013±0.016 35.2±2.3  
+5    soft_T0.3            5     0.997±0.007  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+7    hard                 2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 30.5±0.5  
+7    soft_T0.1            2     0.992±0.008  0.667±0.000  0.000±0.000  -0.000±0.000 40.5±3.5  
+7    soft_T0.3            2     0.992±0.008  0.833±0.000  0.000±0.000  +0.166±0.000 60.0±0.0  
+10   hard                 1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 31.0±0.0  
+10   soft_T0.1            1     0.983±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 35.0±0.0  
+15   hard                 1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 30.0±0.0  
+15   soft_T0.1            1     1.000±0.000  0.667±0.000  0.000±0.000  -0.000±0.000 34.0±0.0  
+
+Report saved to F:\internal_circuit_capital_lab\IC-4-M0\reports_branch_a2\BRANCH_A2_DEGRADATION_REPORT.md
+Aggregate stats saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\aggregate_stats.csv
+Raw data saved to F:\internal_circuit_capital_lab\IC-4-M0\results_branch_a2\degradation_curve.csv
+
+======================================================================
+PRELIMINARY VERDICT (to be confirmed by aggregate stats)
+======================================================================
+  n=5: hard(H=0.667, UA=0.000) vs soft_T0.1(H=0.680, UA=0.000)
+  n=3: hard(H=0.700, UA=0.007) vs soft_T0.1(H=0.713, UA=0.007)
+  n=2: hard(H=0.693, UA=0.007) vs soft_T0.1(H=0.747, UA=0.007)
+
+Done.

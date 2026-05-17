@@ -1,0 +1,199 @@
+============================================================
+IC-4-M2: Boundary Diagnostic & Constrained Steering Selection
+============================================================
+Config: configs/config_m2.yaml
+Model: Qwen/Qwen2.5-0.5B-Instruct
+
+Config summary:
+  seeds: [0]
+  layers: [11, 12, 13]
+  alphas: [-1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, 0.0]
+  train_size: 60
+  test_size: 120
+  max_new_tokens: 48
+  Estimated evaluations: 68
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Generating data for seed 0
+  seed=0: train 30A+30U, test 60A+60U
+
+  Base + Prompt-only...
+    base: H=0.950 C=0.567 A=0.000 UA=0.017
+    prompt_only: H=0.417 C=0.183 A=0.167 UA=0.267
+
+  LAYER 11
+    layer=11: collecting activations...
+    layer=11: saved (60 pairs, dim=896)
+    vectors: steering=1.0000 random=1.0000 shuffled=1.0000
+    steering_a-1.1: H=0.533 C=0.483 A=0.150 UA=0.150
+    steering_a-1.0: H=0.567 C=0.517 A=0.150 UA=0.133
+    steering_a-0.9: H=0.567 C=0.467 A=0.150 UA=0.083
+    steering_a-0.8: H=0.617 C=0.500 A=0.150 UA=0.050
+    steering_a-0.7: H=0.683 C=0.467 A=0.133 UA=0.033
+    steering_a-0.6: H=0.733 C=0.450 A=0.067 UA=0.033
+    steering_a-0.5: H=0.717 C=0.483 A=0.050 UA=0.017
+    steering_a0.0: H=0.950 C=0.567 A=0.000 UA=0.017
+    random_a-1.1: H=0.783 C=0.583
+    random_a-1.0: H=0.783 C=0.550
+    random_a-0.9: H=0.833 C=0.567
+    random_a-0.8: H=0.867 C=0.567
+    random_a-0.7: H=0.900 C=0.550
+    random_a-0.6: H=0.900 C=0.550
+    random_a-0.5: H=0.933 C=0.567
+    shuffled_a-1.1: H=0.667 C=0.550
+    shuffled_a-1.0: H=0.700 C=0.533
+    shuffled_a-0.9: H=0.717 C=0.517
+    shuffled_a-0.8: H=0.733 C=0.517
+    shuffled_a-0.7: H=0.767 C=0.500
+    shuffled_a-0.6: H=0.783 C=0.517
+    shuffled_a-0.5: H=0.817 C=0.550
+    layer 11 done in 10305s
+
+  LAYER 12
+    layer=12: collecting activations...
+    layer=12: saved (60 pairs, dim=896)
+    vectors: steering=1.0000 random=1.0000 shuffled=1.0000
+    steering_a-1.1: H=0.583 C=0.500 A=0.117 UA=0.083
+    steering_a-1.0: H=0.650 C=0.467 A=0.083 UA=0.067
+    steering_a-0.9: H=0.700 C=0.467 A=0.083 UA=0.050
+    steering_a-0.8: H=0.700 C=0.483 A=0.067 UA=0.033
+    steering_a-0.7: H=0.750 C=0.483 A=0.050 UA=0.033
+    steering_a-0.6: H=0.800 C=0.550 A=0.050 UA=0.033
+    steering_a-0.5: H=0.750 C=0.550 A=0.083 UA=0.017
+    steering_a0.0: H=0.950 C=0.567 A=0.000 UA=0.017
+    random_a-1.1: H=0.950 C=0.667
+    random_a-1.0: H=0.950 C=0.633
+    random_a-0.9: H=0.950 C=0.617
+    random_a-0.8: H=0.917 C=0.600
+    random_a-0.7: H=0.900 C=0.583
+    random_a-0.6: H=0.867 C=0.583
+    random_a-0.5: H=0.883 C=0.567
+    shuffled_a-1.1: H=0.767 C=0.567
+    shuffled_a-1.0: H=0.783 C=0.567
+    shuffled_a-0.9: H=0.783 C=0.550
+    shuffled_a-0.8: H=0.817 C=0.550
+    shuffled_a-0.7: H=0.800 C=0.550
+    shuffled_a-0.6: H=0.850 C=0.567
+    shuffled_a-0.5: H=0.883 C=0.550
+    layer 12 done in 9945s
+
+  LAYER 13
+    layer=13: collecting activations...
+    layer=13: saved (60 pairs, dim=896)
+    vectors: steering=1.0000 random=1.0000 shuffled=1.0000
+    steering_a-1.1: H=0.567 C=0.467 A=0.100 UA=0.067
+    steering_a-1.0: H=0.583 C=0.483 A=0.067 UA=0.050
+    steering_a-0.9: H=0.567 C=0.533 A=0.083 UA=0.050
+    steering_a-0.8: H=0.600 C=0.533 A=0.083 UA=0.050
+    steering_a-0.7: H=0.633 C=0.533 A=0.067 UA=0.033
+    steering_a-0.6: H=0.683 C=0.533 A=0.083 UA=0.033
+    steering_a-0.5: H=0.750 C=0.567 A=0.067 UA=0.017
+    steering_a0.0: H=0.950 C=0.567 A=0.000 UA=0.017
+    random_a-1.1: H=0.950 C=0.600
+    random_a-1.0: H=0.950 C=0.567
+    random_a-0.9: H=0.933 C=0.583
+    random_a-0.8: H=0.950 C=0.567
+    random_a-0.7: H=0.950 C=0.600
+    random_a-0.6: H=0.950 C=0.600
+    random_a-0.5: H=0.917 C=0.583
+    shuffled_a-1.1: H=0.667 C=0.500
+    shuffled_a-1.0: H=0.700 C=0.533
+    shuffled_a-0.9: H=0.750 C=0.533
+    shuffled_a-0.8: H=0.800 C=0.550
+    shuffled_a-0.7: H=0.767 C=0.583
+    shuffled_a-0.6: H=0.783 C=0.567
+    shuffled_a-0.5: H=0.833 C=0.567
+    layer 13 done in 9922s
+
+Total sweep time: 31134s (518.9 min)
+
+Raw metrics saved to results_m2\metrics_raw.csv (68 rows)
+Aggregated metrics saved to results_m2\metrics_agg.csv (68 rows)
+
+Per-layer summary:
+  Layer 11: best H=0.533 C=0.483 UA=0.150 alpha=-1.1
+  Layer 12: best H=0.583 C=0.500 UA=0.083 alpha=-1.1
+  Layer 13: best H=0.567 C=0.467 UA=0.067 alpha=-1.1
+
+Computing M2 verdict...
+
+[CRASH at this point — bug in report_writer.py line 603: iloc used instead of loc for pandas label-based indexing. Fixed by changing constraints.iloc[row.name] -> constraints.loc[row.name]. Verdict and report regenerated post-fix via src/regenerate_m2_report.py.]
+
+Verdict: IC4_M2_MODEL_DAMAGE
+Reason: Hallucination reduced substantially (best H=0.533 vs base H=0.950) but ALL steering points fail C>=0.78 or UA<=0.08 constraints. This suggests the steering direction is more caution/refusal than clean anti-hallucination.
+
+Constrained candidates: 0
+All rejected due to C < 0.78 (base C=0.567 on this harder test set).
+
+Control comparison summary (best-control gaps):
+  Layer 11: real H=0.533 vs random H=0.783 (gap=0.250 PASS) vs shuffled H=0.667 (gap=0.134 PASS)
+  Layer 12: real H=0.583 vs random H=0.867 (gap=0.284 PASS) vs shuffled H=0.767 (gap=0.184 PASS)
+  Layer 13: real H=0.567 vs random H=0.917 (gap=0.350 PASS) vs shuffled H=0.667 (gap=0.100 PASS)
+
+All control gaps PASS — real steering clearly outperforms both random and shuffled controls.
+However, max C across all points is 0.567 (layer13 a=-0.5), well below 0.78 constraint.
+Conclusion: steering reduces H via caution/refusal/uncertainty, not clean anti-hallucination.
+
+Report saved to reports_m2\IC4_M2_BOUNDARY_DIAGNOSTIC_REPORT.md
+============================================================
+IC-4-M2: Boundary Diagnostic & Constrained Steering Selection
+============================================================
+Config: configs/config_m2.yaml
+Model: Qwen/Qwen2.5-0.5B-Instruct
+
+Config summary:
+  seeds: [0, 1, 2]
+  layers: [10, 11, 12, 13, 14]
+  alphas: [-1.25, -1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, 0.0]
+  train_size: 120
+  test_size: 240
+  max_new_tokens: 48
+  Estimated evaluations: 471
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Loading cached data for seed 0
+  seed=0: train 30A+30U, test 60A+60U
+
+  Base + Prompt-only...
+============================================================
+IC-4-M2: Boundary Diagnostic & Constrained Steering Selection
+============================================================
+Config: configs/config_m2.yaml
+Model: Qwen/Qwen2.5-0.5B-Instruct
+
+Config summary:
+  seeds: [0, 1, 2]
+  layers: [10, 11, 12, 13, 14]
+  alphas: [-1.25, -1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, 0.0]
+  train_size: 120
+  test_size: 240
+  max_new_tokens: 48
+  Estimated evaluations: 471
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Generating data for seed 0
+  seed=0: train 60A+60U, test 120A+120U
+
+  Base + Prompt-only...
+    base: H=0.908 C=0.633 A=0.017 UA=0.000
+    prompt_only: H=0.375 C=0.142 A=0.108 UA=0.250
+
+  LAYER 10
+    layer=10: collecting activations...
+    layer=10: saved (120 pairs, dim=896)
+    vectors: steering=1.0000 random=1.0000 shuffled=1.0000

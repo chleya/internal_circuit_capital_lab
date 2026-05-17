@@ -1,0 +1,9 @@
+seed,layer,mode,alpha,hallucination_rate,calibrated_abstention_rate,correct_answer_rate,unnecessary_abstention_rate,answerable_count,unanswerable_count,hallucination_count,calibrated_abstention_count,correct_count,unnecessary_abstention_count
+0,-1,base,0.0,0.8667,0.0667,0.6,0.0,30,30,26,2,18,0
+0,-1,prompt_only,0.0,0.4,0.1333,0.0667,0.2,30,30,12,4,2,6
+0,12,steering_a-1.1,-1.1,0.7,0.0667,0.5667,0.1,30,30,21,2,17,3
+0,12,steering_a-1.0,-1.0,0.6667,0.1,0.5333,0.0667,30,30,20,3,16,2
+0,12,steering_a-0.9,-0.9,0.8,0.0667,0.5333,0.0333,30,30,24,2,16,1
+0,12,feedback_a-1.0_k0.5,-1.0,0.9,0.0,0.5667,0.0333,30,30,27,0,17,1
+0,12,feedback_a-1.0_k1.0,-1.0,0.9,0.0,0.5667,0.0333,30,30,27,0,17,1
+0,12,feedback_a-1.0_k2.0,-1.0,0.9,0.0,0.5667,0.0333,30,30,27,0,17,1

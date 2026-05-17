@@ -1,0 +1,103 @@
+============================================================
+IC-4-M4-Drift: Geometric Perturbation Diagnostic
+============================================================
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+  seed=0: test 30A+30U
+
+  LAYER 12 — loading activations...
+============================================================
+IC-4-M4-Drift: Geometric Perturbation Diagnostic
+============================================================
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+  seed=0: test 30A+30U
+
+  LAYER 12 — loading activations...
+    Loaded 30 pairs, dim=896
+  Phase 1: base generation (60 samples)...
+    base: 20/60
+    base: 40/60
+    base: 60/60
+  Phase: open_loop (60 samples)...
+    open_loop done
+  Phase: oracle_gate (60 samples)...
+    oracle_gate done
+  Phase: entropy_gate (60 samples)...
+    entropy_gate done
+  Phase: maxprob_gate (60 samples)...
+    maxprob_gate done
+
+  Drift data saved to results_m4\geometric_drift.csv
+
+============================================================
+GEOMETRIC DRIFT SUMMARY
+============================================================
+Mode                      l2(A)      l2(U)     rel(A)     rel(U)     cos(A)     cos(U)
+-------------------- ---------- ---------- ---------- ---------- ---------- ----------
+open_loop                0.0000     0.0000     0.0000     0.0000     0.0000     0.0000
+oracle_gate              0.0000     0.0000     0.0000     0.0000     0.0000     0.0000
+entropy_gate             0.0000     0.0000     0.0000     0.0000     0.0000     0.0000
+maxprob_gate             0.0000     0.0000     0.0000     0.0000     0.0000     0.0000
+
+============================================================
+GEOMETRIC PRESERVATION RANKING (best on answerable = lowest rel_drift)
+============================================================
+  #1 open_loop: rel(A)=0.0000, rel(U)=0.0000, ratio=0.0x
+  #2 oracle_gate: rel(A)=0.0000, rel(U)=0.0000, ratio=0.0x
+  #3 entropy_gate: rel(A)=0.0000, rel(U)=0.0000, ratio=0.0x
+  #4 maxprob_gate: rel(A)=0.0000, rel(U)=0.0000, ratio=0.0x
+
+Total time: 1493s (24.9 min)
+============================================================
+IC-4-M4-Drift: Geometric Perturbation Diagnostic
+============================================================
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+  seed=0: test 30A+30U
+
+  LAYER 12 — loading activations...
+    Loaded 30 pairs, dim=896
+  Phase 1: base generation (60 samples)...
+    base: 20/60
+    base: 40/60
+    base: 60/60
+  Phase: open_loop (60 samples)...
+    open_loop done
+  Phase: oracle_gate (60 samples)...
+    oracle_gate done
+  Phase: entropy_gate (60 samples)...
+    entropy_gate done
+  Phase: maxprob_gate (60 samples)...
+    maxprob_gate done
+
+  Drift data saved to results_m4\geometric_drift.csv
+
+============================================================
+GEOMETRIC DRIFT SUMMARY
+============================================================
+Mode                      l2(A)      l2(U)     rel(A)     rel(U)     cos(A)     cos(U)
+-------------------- ---------- ---------- ---------- ---------- ---------- ----------
+open_loop                1.9263     2.7367     0.1926     0.2652     0.0289     0.0534
+oracle_gate              0.0000     2.7367     0.0000     0.2652    -0.0000     0.0534
+entropy_gate             0.5084     0.9479     0.0505     0.0912     0.0054     0.0124
+maxprob_gate             0.8553     1.3719     0.0858     0.1331     0.0100     0.0211
+
+============================================================
+GEOMETRIC PRESERVATION RANKING (best on answerable = lowest rel_drift)
+============================================================
+  #1 oracle_gate: rel(A)=0.0000, rel(U)=0.2652, ratio=265228718519.2x
+  #2 entropy_gate: rel(A)=0.0505, rel(U)=0.0912, ratio=1.8x
+  #3 maxprob_gate: rel(A)=0.0858, rel(U)=0.1331, ratio=1.6x
+  #4 open_loop: rel(A)=0.1926, rel(U)=0.2652, ratio=1.4x
+
+Total time: 1368s (22.8 min)
+
+Report saved to reports_m4\IC4_M4_DRIFT_REPORT.md
+
+============================================================
+IC-4-M4-Drift complete.
+============================================================

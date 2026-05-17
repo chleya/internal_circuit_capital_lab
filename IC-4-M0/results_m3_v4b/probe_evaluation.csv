@@ -1,0 +1,4 @@
+representation,train_acc,cv_acc_mean,cv_acc_std,auc,n_samples,n_pos,n_neg
+last_prompt_token,1.0,1.0,0.0,1.0,30,15,15
+mean_pooled,1.0,1.0,0.0,1.0,30,15,15
+question_span_pooled,1.0,1.0,0.0,1.0,30,15,15

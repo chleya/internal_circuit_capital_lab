@@ -1,0 +1,54 @@
+# IC-4-M1: Diagnostic Sweep Configuration
+# Multi-seed, multi-layer, multi-alpha diagnostic round.
+#
+# Two presets are provided:
+#   smoke  — fast, ~20-30 min for verification (default below)
+#   full   — comprehensive, ~4-6 hours (uncomment to use)
+#
+# Usage:
+#   python -m src.run_m1 --config configs/config_m1.yaml          # smoke
+#   python -m src.run_m1 --config configs/config_m1.yaml --full   # full sweep
+
+model:
+  name: "Qwen/Qwen2.5-0.5B-Instruct"
+  device: "auto"
+  torch_dtype: "float16"
+
+data:
+  train_size: 60
+  test_size: 120
+  train_path: "data_m1/train.jsonl"
+  test_path: "data_m1/test.jsonl"
+
+activation:
+  token_position: "last"
+
+steering:
+  vector_type: "difference"
+  seeds: [0]
+  layers: [9, 12, 15]
+  alphas: [-1.25, -1.0, -0.75, -0.5, 0.0]
+
+generation:
+  max_new_tokens: 128
+  temperature: 0.0
+  do_sample: false
+
+output:
+  results_dir: "results_m1"
+  reports_dir: "reports_m1"
+
+# ──────────────────────────────────────────────────
+# Full config (uncomment and comment-out smoke above):
+# ──────────────────────────────────────────────────
+# data:
+#   train_size: 300
+#   test_size: 500
+#   train_path: "data_m1/train.jsonl"
+#   test_path: "data_m1/test.jsonl"
+#
+# steering:
+#   vector_type: "difference"
+#   seeds: [0, 1, 2]
+#   layers: [6, 9, 12, 15, 18]
+#   alphas: [-1.5, -1.25, -1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5]

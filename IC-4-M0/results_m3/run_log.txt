@@ -1,0 +1,78 @@
+============================================================
+IC-4-M3: Feedback-Controlled Steering (Smoke)
+============================================================
+
+Config: seed=[0], layer=[12], open_loop_alphas=[-1.1, -1.0, -0.9]
+Feedback: base_alpha=-1.0, k=[0.5, 1.0, 2.0]
+Data: train=30, test=60
+Estimated evaluations: 8
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+============================================================
+IC-4-M3: Feedback-Controlled Steering (Smoke)
+============================================================
+
+Config: seed=[0], layer=[12], open_loop_alphas=[-1.1, -1.0, -0.9]
+Feedback: base_alpha=-1.0, k=[0.5, 1.0, 2.0]
+Data: train=30, test=60
+Estimated evaluations: 8
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Generating data for seed 0
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    layer=12: collecting activations...
+    layer=12: saved (30 pairs)
+
+  Open-loop steering:
+    open_a-1.10: H=0.700 C=0.567 UA=0.100
+    open_a-1.00: H=0.667 C=0.533 UA=0.067
+    open_a-0.90: H=0.800 C=0.533 UA=0.033
+
+  Feedback steering:
+    fb_a-1.00_k0.5: H=0.900 C=0.567 UA=0.033
+    fb_a-1.00_k1.0: H=0.900 C=0.567 UA=0.033
+    fb_a-1.00_k2.0: H=0.900 C=0.567 UA=0.033
+    layer 12 done in 1621s
+
+Total time: 2154s (35.9 min)
+
+Raw metrics saved to results_m3\metrics_raw.csv (8 rows)
+
+============================================================
+COMPARISON: Open-Loop vs Feedback
+============================================================
+Mode                             H        C       UA
+------------------------- -------- -------- --------
+base                         0.867    0.600    0.000
+open_a-1.10                  0.700    0.567    0.100
+open_a-1.00                  0.667    0.533    0.067
+open_a-0.90                  0.800    0.533    0.033
+fb_a-1.00_k?                 0.900    0.567    0.033
+fb_a-1.00_k?                 0.900    0.567    0.033
+fb_a-1.00_k?                 0.900    0.567    0.033
+
+DELTA ANALYSIS (vs base):
+  Best open-loop (a=-1.00): dH=-0.200 dC=-0.067 dUA=+0.067
+  Best feedback   (a=-1.00 k=?): dH=--0.033 dC=-0.033 dUA=+0.033
+
+  Selectivity comparison:
+    Open-loop:  dH/dC = 3.0  (H reduction per C lost)
+    Feedback:   dH/dC = -1.0  (H reduction per C lost)
+    => Open-loop is MORE selective (-0.3x better H/C tradeoff)
+
+============================================================
+IC-4-M3 smoke complete.
+============================================================

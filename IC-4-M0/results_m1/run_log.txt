@@ -1,0 +1,78 @@
+============================================================
+IC-4-M1: Diagnostic Sweep for Activation Steering
+============================================================
+Config: configs/config_m1.yaml
+Model: Qwen/Qwen2.5-0.5B-Instruct
+
+Config summary:
+  seeds: [0]
+  layers: [9, 12, 15]
+  alphas: [-1.25, -1.0, -0.75, -0.5, 0.0]
+  train_size: 60
+  test_size: 120
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Generating data for seed 0
+  seed=0: train 30A+30U, test 60A+60U
+
+  Base + Prompt-only...
+    base: H=0.900 C=0.800 A=0.067 UA=0.033
+    prompt_only: H=0.433 C=0.450 A=0.267 UA=0.417
+
+  LAYER 9
+    layer=9: collecting activations...
+    layer=9: saved (60 pairs, dim=896)
+    vectors: steering=1.0000 random=1.0000 shuffled=1.0000
+    steering_a-1.25: H=0.617 C=0.733 A=0.250 UA=0.100
+    steering_a-1.0: H=0.700 C=0.750 A=0.167 UA=0.067
+    steering_a-0.75: H=0.733 C=0.783 A=0.183 UA=0.067
+    steering_a-0.5: H=0.783 C=0.783 A=0.133 UA=0.050
+    steering_a0.0: H=0.900 C=0.800 A=0.067 UA=0.033
+    random_a-1.25: H=0.733 C=0.817 A=0.183 UA=0.050
+    random_a-1.0: H=0.750 C=0.800 A=0.183 UA=0.050
+    random_a-0.75: H=0.833 C=0.800 A=0.083 UA=0.017
+    random_a-0.5: H=0.783 C=0.800 A=0.150 UA=0.033
+    shuffled_a-1.25: H=0.667 C=0.733 A=0.167 UA=0.033
+    shuffled_a-1.0: H=0.650 C=0.717 A=0.167 UA=0.017
+    shuffled_a-0.75: H=0.767 C=0.800 A=0.150 UA=0.017
+    shuffled_a-0.5: H=0.833 C=0.767 A=0.083 UA=0.033
+
+  LAYER 12
+    layer=12: collecting activations...
+    layer=12: saved (60 pairs, dim=896)
+    vectors: steering=1.0000 random=1.0000 shuffled=1.0000
+    steering_a-1.25: H=0.483 C=0.733 A=0.300 UA=0.183
+    steering_a-1.0: H=0.583 C=0.700 A=0.233 UA=0.150
+    steering_a-0.75: H=0.733 C=0.733 A=0.133 UA=0.100
+    steering_a-0.5: H=0.700 C=0.783 A=0.183 UA=0.133
+    steering_a0.0: H=0.900 C=0.800 A=0.067 UA=0.033
+    random_a-1.25: H=0.900 C=0.817 A=0.067 UA=0.050
+    random_a-1.0: H=0.883 C=0.817 A=0.083 UA=0.050
+    random_a-0.75: H=0.867 C=0.800 A=0.083 UA=0.033
+    random_a-0.5: H=0.850 C=0.783 A=0.100 UA=0.050
+    shuffled_a-1.25: H=0.667 C=0.783 A=0.250 UA=0.033
+    shuffled_a-1.0: H=0.733 C=0.800 A=0.200 UA=0.050
+    shuffled_a-0.75: H=0.817 C=0.800 A=0.100 UA=0.083
+    shuffled_a-0.5: H=0.833 C=0.783 A=0.117 UA=0.067
+
+  LAYER 15
+    layer=15: collecting activations...
+    layer=15: saved (60 pairs, dim=896)
+    vectors: steering=1.0000 random=1.0000 shuffled=1.0000
+    steering_a-1.25: H=0.717 C=0.800 A=0.183 UA=0.067
+    steering_a-1.0: H=0.750 C=0.767 A=0.183 UA=0.033
+    steering_a-0.75: H=0.800 C=0.733 A=0.133 UA=0.017
+    steering_a-0.5: H=0.817 C=0.767 A=0.133 UA=0.017
+    steering_a0.0: H=0.900 C=0.800 A=0.067 UA=0.033
+    random_a-1.25: H=0.850 C=0.783 A=0.033 UA=0.050
+    random_a-1.0: H=0.833 C=0.783 A=0.067 UA=0.067
+    random_a-0.75: H=0.900 C=0.783 A=0.050 UA=0.067
+    random_a-0.5: H=0.900 C=0.767 A=0.033 UA=0.067
+    shuffled_a-1.25: H=0.817 C=0.783 A=0.083 UA=0.050
+    shuffled_a-1.0: H=0.800 C=0.800 A=0.100 UA=0.033
+    shuffled_a-0.75: H=0.833 C=0.800 A=0.117 UA=0.033

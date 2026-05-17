@@ -1,0 +1,97 @@
+============================================================
+IC-4-M3-v4: Prefill / Token-0 Probe Gate
+============================================================
+Config: seed=[0], layer=[12], alpha_max=-1.0
+Probe representations: ['last_prompt_token', 'mean_pooled', 'question_span_pooled']
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded 30 pairs, dim=896
+
+    Steering a=-1.00 (open loop)...
+      steering_a-1.00: H=0.667 C=0.533 UA=0.067
+
+    Oracle gate...
+      oracle_a-1.00: H=0.667 C=0.600 UA=0.000
+
+  --- Representation: last_prompt_token ---
+    Phase A: Training probe [last_prompt_token]...
+      Collected: X=(30, 896), y pos/neg=15/15
+      Probe [last_prompt_token]: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+    Phase B: Prefill probe gate [last_prompt_token]...
+      valid_prefill_probe_gate_a-1.0_last_prompt_token: H=0.833 C=0.733 UA=0.000
+    Random prefill probe gate [last_prompt_token]...
+      random_last_prompt_token: H=1.000 C=0.733 UA=0.000
+    Shuffled prefill probe gate [last_prompt_token]...
+      shuffled_last_prompt_token: H=1.000 C=0.733 UA=0.000
+
+  --- Representation: mean_pooled ---
+    Phase A: Training probe [mean_pooled]...
+      Collected: X=(30, 896), y pos/neg=15/15
+      Probe [mean_pooled]: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+    Phase B: Prefill probe gate [mean_pooled]...
+      valid_prefill_probe_gate_a-1.0_mean_pooled: H=0.833 C=0.733 UA=0.000
+    Random prefill probe gate [mean_pooled]...
+      random_mean_pooled: H=1.000 C=0.733 UA=0.000
+    Shuffled prefill probe gate [mean_pooled]...
+      shuffled_mean_pooled: H=1.000 C=0.733 UA=0.000
+
+  --- Representation: question_span_pooled ---
+    Phase A: Training probe [question_span_pooled]...
+      Collected: X=(30, 896), y pos/neg=15/15
+      Probe [question_span_pooled]: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+    Phase B: Prefill probe gate [question_span_pooled]...
+      valid_prefill_probe_gate_a-1.0_question_span_pooled: H=0.833 C=0.733 UA=0.000
+    Random prefill probe gate [question_span_pooled]...
+      random_question_span_pooled: H=1.000 C=0.733 UA=0.000
+    Shuffled prefill probe gate [question_span_pooled]...
+      shuffled_question_span_pooled: H=1.000 C=0.733 UA=0.000
+    layer 12 done in 3206s
+
+Total time: 3767s (62.8 min)
+
+Metrics saved to results_m3_v4b\metrics_raw.csv (13 rows)
+Per-sample predictions [last_prompt_token] saved to results_m3_v4b\per_sample_predictions_last_prompt_token.csv (60 rows)
+Per-sample predictions [mean_pooled] saved to results_m3_v4b\per_sample_predictions_mean_pooled.csv (60 rows)
+Per-sample predictions [question_span_pooled] saved to results_m3_v4b\per_sample_predictions_question_span_pooled.csv (60 rows)
+Probe evaluation saved to results_m3_v4b\probe_evaluation.csv
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                               H=0.867 C=0.600 UA=0.000
+  prompt_only                                        H=0.400 C=0.067 UA=0.200
+  steering_a-1.0                                     H=0.667 C=0.533 UA=0.067
+  oracle_gate_a-1.0                                  H=0.667 C=0.600 UA=0.000
+  valid_prefill_probe_gate_a-1.0_last_prompt_token   H=0.833 C=0.733 UA=0.000
+  random_valid_prefill_probe_gate_a-1.0_last_prompt_token H=1.000 C=0.733 UA=0.000
+  shuffled_valid_prefill_probe_gate_a-1.0_last_prompt_token H=1.000 C=0.733 UA=0.000
+  valid_prefill_probe_gate_a-1.0_mean_pooled         H=0.833 C=0.733 UA=0.000
+  random_valid_prefill_probe_gate_a-1.0_mean_pooled  H=1.000 C=0.733 UA=0.000
+  shuffled_valid_prefill_probe_gate_a-1.0_mean_pooled H=1.000 C=0.733 UA=0.000
+  valid_prefill_probe_gate_a-1.0_question_span_pooled H=0.833 C=0.733 UA=0.000
+  random_valid_prefill_probe_gate_a-1.0_question_span_pooled H=1.000 C=0.733 UA=0.000
+  shuffled_valid_prefill_probe_gate_a-1.0_question_span_pooled H=1.000 C=0.733 UA=0.000
+
+============================================================
+VERDICT: IC4_M3_V4_PREFILL_PROBE_PROMISING
+============================================================
+Reason: Best prefill probe gate (valid_prefill_probe_gate_a-1.0_last_prompt_token, H=0.833) significantly improves over M3-v3 token-4 gate (H=0.933, dH=-0.100). Earlier intervention helps but doesn't fully close the gap to oracle (H=0.667).
+
+Report saved to reports_m3_v4b\IC4_M3_V4_PREFILL_GATE_REPORT.md
+
+IC-4-M3-v4 complete. Verdict: IC4_M3_V4_PREFILL_PROBE_PROMISING

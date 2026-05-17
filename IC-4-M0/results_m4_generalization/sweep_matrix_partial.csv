@@ -1,0 +1,15 @@
+hallucination_rate,calibrated_abstention_rate,correct_answer_rate,unnecessary_abstention_rate,style_only_score,answerable_count,unanswerable_count,hallucination_count,calibrated_abstention_count,correct_count,unnecessary_abstention_count,avg_answerable_uncertainty,avg_unanswerable_uncertainty,seed,layer,mode,alpha,vector_type
+0.8167,0.0833,0.55,0.0,0.0202,60,60,49,5,33,0,0.0167,0.0,0,-1,base,0.0,none
+0.7,0.1333,0.4667,0.0667,0.0469,60,60,42,8,28,4,0.0167,0.0167,0,12,steering_a-1.00,-1.0,steering
+0.7,0.1333,0.55,0.0,0.0469,60,60,42,8,33,0,0.0167,0.0167,0,12,oracle_gate_a-1.0,-1.0,steering
+0.7,0.1333,0.55,0.0,0.0469,60,60,42,8,33,0,0.0167,0.0167,0,12,single_pass_hard_gate_a-1.0,-1.0,steering
+0.9333,0.0333,0.55,0.0,0.0177,60,60,56,2,33,0,0.0167,0.0,0,12,random_single_pass_hard_gate_a-1.0,-1.0,random
+0.75,0.0833,0.55,0.0,0.0219,60,60,45,5,33,0,0.0167,0.0,0,12,shuffled_single_pass_hard_gate_a-1.0,-1.0,shuffled
+0.8167,0.0667,0.5833,0.0,0.1008,60,60,49,4,35,0,0.0667,0.0167,1,-1,base,0.0,none
+0.8,0.0667,0.45,0.0,0.0412,60,60,48,4,27,0,0.0333,0.0,2,-1,base,0.0,none
+0.85,0.0833,0.5833,0.0,0.0,60,60,51,5,35,0,0.0,0.0,0,-1,base,0.0,none
+0.7333,0.0333,0.4667,0.0333,0.0224,60,60,44,2,28,2,0.0167,0.0,0,12,steering_a-1.00,-1.0,steering
+0.7333,0.0333,0.5833,0.0,0.0,60,60,44,2,35,0,0.0,0.0,0,12,oracle_gate_a-1.0,-1.0,steering
+0.7333,0.0333,0.5833,0.0,0.0,60,60,44,2,35,0,0.0,0.0,0,12,single_pass_hard_gate_a-1.0,-1.0,steering
+0.9833,0.0,0.5833,0.0,0.0168,60,60,59,0,35,0,0.0,0.0167,0,12,random_single_pass_hard_gate_a-1.0,-1.0,random
+0.75,0.0667,0.5833,0.0,0.0,60,60,45,4,35,0,0.0,0.0,0,12,shuffled_single_pass_hard_gate_a-1.0,-1.0,shuffled

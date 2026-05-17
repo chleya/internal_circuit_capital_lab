@@ -1,0 +1,236 @@
+============================================================
+IC-4-M3-v2: Telemetry-First Gated Steering
+============================================================
+
+Config: seed=[0], layer=[12], alpha_max=-1.0
+Gates: ['entropy', 'maxprob', 'uncertainty_mass']
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Loading cached M3 data for seed 0
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded 30 pairs, dim=896
+
+  Open-loop...
+    open_a-1.00: H=0.667 C=0.533 UA=0.067
+
+  Oracle gate...
+    oracle_a-1.00: H=0.667 C=0.600 UA=0.000
+
+  Risk-gated steering:
+    entropy: k=3.0, th=2.0
+    entropy: H=0.933 C=0.533 UA=0.000
+    maxprob: k=10.0, th=0.3
+    maxprob: H=0.933 C=0.567 UA=0.000
+    uncertainty_mass: k=10.0, th=0.5
+    uncertainty_mass: H=0.933 C=0.567 UA=0.000
+
+  Control gates:
+    random_entropy: H=0.900 C=0.567 UA=0.000
+    shuffled_entropy: H=0.933 C=0.567 UA=0.000
+    layer 12 done in 1915s
+
+Total time: 2426s (40.4 min)
+
+Metrics saved to results_m3_v2\metrics_raw.csv (9 rows)
+Telemetry saved to results_m3_v2\telemetry_gates.csv (14400 rows)
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                H=0.867 C=0.600 UA=0.000
+  prompt_only                         H=0.400 C=0.067 UA=0.200
+  steering_a-1.0                      H=0.667 C=0.533 UA=0.067
+  oracle_gate_a-1.0                   H=0.667 C=0.600 UA=0.000
+  entropy_gate_a-1.0                  H=0.933 C=0.533 UA=0.000
+  maxprob_gate_a-1.0                  H=0.933 C=0.567 UA=0.000
+  uncertainty_mass_gate_a-1.0         H=0.933 C=0.567 UA=0.000
+  random_entropy_gate_a-1.0           H=0.900 C=0.567 UA=0.000
+  shuffled_entropy_gate_a-1.0         H=0.933 C=0.567 UA=0.000
+
+============================================================
+GATE TELEMETRY SUMMARY
+============================================================
+  entropy_gate_a-1.0: gate_ans=0.1977 gate_unans=0.2690 separation=0.0714
+  maxprob_gate_a-1.0: gate_ans=0.3692 gate_unans=0.4867 separation=0.1174
+  uncertainty_mass_gate_a-1.0: gate_ans=0.0577 gate_unans=0.0573 separation=0.0004
+  random_entropy_gate_a-1.0: gate_ans=0.1970 gate_unans=0.2710 separation=0.0741
+  shuffled_entropy_gate_a-1.0: gate_ans=0.1923 gate_unans=0.2584 separation=0.0662
+
+============================================================
+VERDICT: IC4_M3_V2_GATE_INSUFFICIENT
+============================================================
+Reason: Gate (random_entropy_gate_a-1.0) moves (separation=0.066) but metrics: H=0.900 (oracle H=0.667), C=0.567. Gate signal has action but insufficient to match oracle gate.
+
+Report saved to reports_m3_v2\IC4_M3_V2_TELEMETRY_REPORT.md
+
+IC-4-M3-v2 complete. Verdict: IC4_M3_V2_GATE_INSUFFICIENT
+============================================================
+IC-4-M3-v2: Telemetry-First Gated Steering
+============================================================
+
+Config: seed=[0], layer=[12], alpha_max=-1.0
+Gates: ['entropy', 'maxprob', 'uncertainty_mass']
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Loading cached M3 data for seed 0
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded 30 pairs, dim=896
+
+  Open-loop...
+    open_a-1.00: H=0.667 C=0.533 UA=0.067
+
+  Oracle gate...
+    oracle_a-1.00: H=0.667 C=0.600 UA=0.000
+
+  Risk-gated steering:
+    entropy: k=3.0, th=2.0
+    entropy: H=0.933 C=0.533 UA=0.000
+    maxprob: k=10.0, th=0.3
+    maxprob: H=0.933 C=0.567 UA=0.000
+    uncertainty_mass: k=10.0, th=0.5
+    uncertainty_mass: H=0.933 C=0.567 UA=0.000
+
+  Control gates:
+    random_entropy: H=0.900 C=0.567 UA=0.000
+    shuffled_entropy: H=0.933 C=0.567 UA=0.000
+    layer 12 done in 1833s
+
+Total time: 2344s (39.1 min)
+
+Metrics saved to results_m3_v2\metrics_raw.csv (9 rows)
+Telemetry saved to results_m3_v2\telemetry_gates.csv (14400 rows)
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                H=0.867 C=0.600 UA=0.000
+  prompt_only                         H=0.400 C=0.067 UA=0.200
+  steering_a-1.0                      H=0.667 C=0.533 UA=0.067
+  oracle_gate_a-1.0                   H=0.667 C=0.600 UA=0.000
+  entropy_gate_a-1.0                  H=0.933 C=0.533 UA=0.000
+  maxprob_gate_a-1.0                  H=0.933 C=0.567 UA=0.000
+  uncertainty_mass_gate_a-1.0         H=0.933 C=0.567 UA=0.000
+  random_entropy_gate_a-1.0           H=0.900 C=0.567 UA=0.000
+  shuffled_entropy_gate_a-1.0         H=0.933 C=0.567 UA=0.000
+
+============================================================
+GATE TELEMETRY SUMMARY
+============================================================
+  entropy_gate_a-1.0: gate_ans=0.1977 gate_unans=0.2690 separation=0.0714
+  maxprob_gate_a-1.0: gate_ans=0.3692 gate_unans=0.4867 separation=0.1174
+  uncertainty_mass_gate_a-1.0: gate_ans=0.0577 gate_unans=0.0573 separation=0.0004
+  random_entropy_gate_a-1.0: gate_ans=0.1970 gate_unans=0.2710 separation=0.0741
+  shuffled_entropy_gate_a-1.0: gate_ans=0.1923 gate_unans=0.2584 separation=0.0662
+
+============================================================
+VERDICT: IC4_M3_V2_GATE_INSUFFICIENT
+============================================================
+Reason: Gate (entropy_gate_a-1.0) moves (gate_sep=0.117) but metrics: H=0.933 (base H=0.867); oracle H=0.667 C=0.6 UA=0.0. best_sep_gate=maxprob_gate_a-1.0(gate_sep=0.117,risk_sep=0.081); controls NOT beaten random_entropy_gate_a-1.0(H=0.900) shuffled_entropy_gate_a-1.0(H=0.933). Gate signal has action but insufficient to match oracle gate.
+
+Report saved to reports_m3_v2\IC4_M3_V2_TELEMETRY_REPORT.md
+
+IC-4-M3-v2 complete. Verdict: IC4_M3_V2_GATE_INSUFFICIENT
+============================================================
+IC-4-M3-v2: Telemetry-First Gated Steering
+============================================================
+
+Config: seed=[0], layer=[12], alpha_max=-1.0
+Gates: ['entropy', 'maxprob', 'uncertainty_mass']
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  Loading cached M3 data for seed 0
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded 30 pairs, dim=896
+
+  Open-loop...
+    open_a-1.00: H=0.667 C=0.533 UA=0.067
+
+  Oracle gate...
+    oracle_a-1.00: H=0.667 C=0.600 UA=0.000
+
+  Risk-gated steering:
+    entropy: k=3.0, th=2.0
+    entropy: H=0.933 C=0.533 UA=0.000
+    maxprob: k=10.0, th=0.3
+    maxprob: H=0.933 C=0.567 UA=0.000
+    uncertainty_mass: k=10.0, th=0.5
+    uncertainty_mass: H=0.933 C=0.567 UA=0.000
+
+  Control gates:
+    random_entropy: H=0.900 C=0.567 UA=0.000
+    shuffled_entropy: H=0.933 C=0.567 UA=0.000
+    layer 12 done in 1918s
+
+Total time: 2570s (42.8 min)
+
+Metrics saved to results_m3_v2\metrics_raw.csv (9 rows)
+Telemetry saved to results_m3_v2\telemetry_gates.csv (14400 rows)
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                H=0.867 C=0.600 UA=0.000
+  prompt_only                         H=0.400 C=0.067 UA=0.200
+  steering_a-1.0                      H=0.667 C=0.533 UA=0.067
+  oracle_gate_a-1.0                   H=0.667 C=0.600 UA=0.000
+  entropy_gate_a-1.0                  H=0.933 C=0.533 UA=0.000
+  maxprob_gate_a-1.0                  H=0.933 C=0.567 UA=0.000
+  uncertainty_mass_gate_a-1.0         H=0.933 C=0.567 UA=0.000
+  random_entropy_gate_a-1.0           H=0.900 C=0.567 UA=0.000
+  shuffled_entropy_gate_a-1.0         H=0.933 C=0.567 UA=0.000
+
+============================================================
+GATE TELEMETRY SUMMARY
+============================================================
+  entropy_gate_a-1.0: gate_ans=0.1977 gate_unans=0.2690 separation=0.0714
+  maxprob_gate_a-1.0: gate_ans=0.3692 gate_unans=0.4867 separation=0.1174
+  uncertainty_mass_gate_a-1.0: gate_ans=0.0216 gate_unans=0.0233 separation=0.0017
+  random_entropy_gate_a-1.0: gate_ans=0.1970 gate_unans=0.2710 separation=0.0741
+  shuffled_entropy_gate_a-1.0: gate_ans=0.1923 gate_unans=0.2584 separation=0.0662
+
+============================================================
+VERDICT: IC4_M3_V2_GATE_INSUFFICIENT
+============================================================
+Reason: Gate (entropy_gate_a-1.0) moves (gate_sep=0.117) but metrics: H=0.933 (base H=0.867); oracle H=0.667 C=0.6 UA=0.0. best_sep_gate=maxprob_gate_a-1.0(gate_sep=0.117); controls NOT beaten random_entropy_gate_a-1.0(H=0.900) shuffled_entropy_gate_a-1.0(H=0.933). Gate signal has action but insufficient to match oracle gate.

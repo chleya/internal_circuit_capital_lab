@@ -1,0 +1,41 @@
+============================================================
+GateSteeringTool Verification
+============================================================
+
+[1/5] Loading model...
+[2/5] Init GateSteeringTool...
+[3/5] Loading data (seed=0)...
+  train: 15A+15U, test: 30A+30U
+[4/5] Training probe (layer=12, last_prompt_token)...
+============================================================
+GateSteeringTool Verification
+============================================================
+
+[1/5] Loading model...
+[2/5] Init GateSteeringTool...
+[3/5] Loading data (seed=0)...
+  train: 15A+15U, test: 30A+30U
+[4/5] Training probe (layer=12, last_prompt_token)...
+  Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+[5/5] Loading steering vector + running gate...
+  Steering dim=896
+  Generated 60 samples x 3 modes in 787s
+
+============================================================
+RESULTS
+============================================================
+  Real gate:         H=0.667 C=0.600 UA=0.000
+  Random control:    H=0.933 C=0.600
+  Shuffled control:  H=0.800 C=0.600
+  Expected (M3-v6):  H=0.667 C=0.600 UA=0.000
+
+============================================================
+CHECKS
+============================================================
+  PASS  H=0.667 +/- 0.02               (H=0.667)
+  PASS  C=0.600 +/- 0.02               (C=0.600)
+  PASS  UA=0.000 +/- 0.02              (UA=0.000)
+  PASS  Real beats random >0.10        (sep=0.267)
+
+ALL CHECKS PASSED — Tool verified against M3-v6 reference.
+Done.

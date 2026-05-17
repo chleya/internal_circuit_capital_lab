@@ -1,0 +1,13 @@
+task,representation,accuracy_mean,accuracy_std,n_samples
+answerable_vs_unanswerable,last-token,0.7333,0.0972,60
+will_hallucinate,last-token,0.9333,0.0816,30
+should_gate_on,last-token,0.7333,0.0972,60
+answerable_vs_unanswerable,mean-pooled,0.9667,0.0408,60
+will_hallucinate,mean-pooled,0.9667,0.0667,30
+should_gate_on,mean-pooled,0.9667,0.0408,60
+answerable_vs_unanswerable,window-4,1.0,0.0,60
+will_hallucinate,window-4,0.9667,0.0667,30
+should_gate_on,window-4,1.0,0.0,60
+answerable_vs_unanswerable,window-8,0.9667,0.0408,60
+will_hallucinate,window-8,0.9,0.0816,30
+should_gate_on,window-8,0.9667,0.0408,60

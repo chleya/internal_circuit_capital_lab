@@ -1,0 +1,32 @@
+model:
+  name: Qwen/Qwen2.5-0.5B-Instruct
+  device: cpu
+  torch_dtype: float32
+
+data:
+  train_size: 30
+  test_size: 60
+  train_path: data_m3/train.jsonl
+  test_path: data_m3/test.jsonl
+
+steering:
+  seeds: [0]
+  layers: [12]
+  alphas: [-1.0]
+
+probe:
+  layer: 12
+  model: logistic
+  representations: [last_prompt_token, mean_pooled, question_span_pooled]
+  steepness: 10.0
+  threshold: 0.5
+  cv_folds: 3
+
+generation:
+  max_new_tokens: 48
+  temperature: 0.0
+  do_sample: false
+
+output:
+  results_dir: results_m3_v4
+  reports_dir: reports_m3_v4

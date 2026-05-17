@@ -1,0 +1,27 @@
+# IC-4-M4: Trajectory-State Diagnostic — Smoke Config
+# Compares last-token vs mean-pooled vs window-pooled representations
+# for predicting answerability, hallucination, and gating decisions.
+
+model:
+  name: Qwen/Qwen2.5-0.5B-Instruct
+  device: cpu
+  torch_dtype: float32
+
+data:
+  test_size: 60
+  test_path: data_m3/test.jsonl
+
+m4:
+  seeds: [0]
+  layers: [12]
+  max_generated_tokens: 48
+  window_sizes: [4, 8]
+
+generation:
+  max_new_tokens: 48
+  temperature: 0.0
+  do_sample: false
+
+output:
+  results_dir: results_m4
+  reports_dir: reports_m4

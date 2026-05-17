@@ -1,0 +1,32 @@
+# IC-4-M0: Minimal Activation Steering Anti-Hallucination Experiment
+
+model:
+  name: "Qwen/Qwen2.5-0.5B-Instruct"
+  device: "auto"
+  torch_dtype: "float16"
+
+data:
+  train_size: 100
+  test_size: 100
+  train_path: "data/train.jsonl"
+  test_path: "data/test.jsonl"
+
+activation:
+  layer: "middle"
+  token_position: "last"
+
+steering:
+  vector_type: "difference"
+  alphas: [-2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 2.0]
+
+generation:
+  max_new_tokens: 128
+  temperature: 0.0
+  do_sample: false
+
+evaluation:
+  method: "rule_based"
+
+output:
+  results_dir: "results"
+  reports_dir: "reports"

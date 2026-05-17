@@ -1,0 +1,137 @@
+# IC-4-M1: Diagnostic Sweep Report
+
+## 1. M0 Recap
+
+IC-4-M0 tested a single layer (middle, index 12) with 7 alphas on 100-train/100-test synthetic QA data.
+
+| Metric | Base | Best Steering (a=-1.0) | Best Shuffled (a=2.0) |
+|---|---|---|---|
+| hallucination_rate | 0.960 | 0.460 | 0.160 |
+| correct_answer_rate | 0.860 | 0.840 | 0.780 |
+| unnecessary_abstention | 0.040 | 0.160 | 0.080 |
+
+**M0 Verdict: IC4_M0_MODEL_DAMAGE** -- Hallucination dropped 52% but unnecessary abstention rose 12 p.p.
+Shuffled vector at extreme alpha also reduced hallucination, suggesting a possible artifact or model-break effect.
+
+## 2. M1 Configuration
+
+| Parameter | Value |
+|---|---|
+| Model | Qwen/Qwen2.5-0.5B-Instruct |
+| Train size | 60 |
+| Test size | 120 |
+| Seeds | [0] |
+| Layers | [9, 12, 15] |
+| Alphas | [-1.25, -1.0, -0.75, -0.5, 0.0] |
+
+## 3. Best Real Steering Candidates
+
+| seed | layer | alpha | hallucination_rate | correct_answer_rate | unnecessary_abstention_rate | calibrated_abstention_rate |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0 | 12 | -1.2500 | 0.4830 | 0.7330 | 0.1830 | 0.3000 |
+| 0 | 12 | -1.0000 | 0.5830 | 0.7000 | 0.1500 | 0.2330 |
+| 0 | 9 | -1.2500 | 0.6170 | 0.7330 | 0.1000 | 0.2500 |
+| 0 | 9 | -1.0000 | 0.7000 | 0.7500 | 0.0670 | 0.1670 |
+| 0 | 12 | -0.5000 | 0.7000 | 0.7830 | 0.1330 | 0.1830 |
+| 0 | 15 | -1.2500 | 0.7170 | 0.8000 | 0.0670 | 0.1830 |
+| 0 | 12 | -0.7500 | 0.7330 | 0.7330 | 0.1000 | 0.1330 |
+| 0 | 9 | -0.7500 | 0.7330 | 0.7830 | 0.0670 | 0.1830 |
+| 0 | 15 | -1.0000 | 0.7500 | 0.7670 | 0.0330 | 0.1830 |
+| 0 | 9 | -0.5000 | 0.7830 | 0.7830 | 0.0500 | 0.1330 |
+| 0 | 15 | -0.7500 | 0.8000 | 0.7330 | 0.0170 | 0.1330 |
+| 0 | 15 | -0.5000 | 0.8170 | 0.7670 | 0.0170 | 0.1330 |
+| 0 | 9 | 0.0000 | 0.9000 | 0.8000 | 0.0330 | 0.0670 |
+| 0 | 12 | 0.0000 | 0.9000 | 0.8000 | 0.0330 | 0.0670 |
+| 0 | 15 | 0.0000 | 0.9000 | 0.8000 | 0.0330 | 0.0670 |
+
+## 4. Random / Shuffled Controls Comparison
+
+| Mode | Min H | Steering Min H | Gap | Verdict |
+|---|---|---|---|---|
+| random | 0.7330 | 0.4830 | +0.2500 | OK |
+| shuffled | 0.6500 | 0.4830 | +0.1670 | OK |
+
+## 5. Per-Layer Summary
+
+### Layer 9
+
+| Source | H | C | UA | alpha |
+|---|---|---|---|---|
+| best steering | 0.617 | 0.733 | 0.100 | -1.25 |
+| best random | 0.733 | 0.817 | 0.050 | -1.25 |
+| best shuffled | 0.650 | 0.717 | 0.017 | -1.00 |
+
+Control gap (steering vs best control): H gap = +0.033 (steering better by 0.033), C gap = -0.084 (steering worse by 0.084), UA gap = +0.083 (steering worse by 0.083).
+
+### Layer 12 (strongest real steering)
+
+| Source | H | C | UA | alpha |
+|---|---|---|---|---|
+| best steering | 0.483 | 0.733 | 0.183 | -1.25 |
+| best random | 0.850 | 0.783 | 0.050 | -0.50 |
+| best shuffled | 0.667 | 0.783 | 0.033 | -1.25 |
+
+Control gap (steering vs best control): H gap = +0.184 (steering better by 0.184), C gap = -0.050 (steering worse by 0.050), UA gap = +0.150 (steering worse by 0.150).
+
+Strongest H reduction across all layers but at heavy C and UA cost.
+
+### Layer 15
+
+| Source | H | C | UA | alpha |
+|---|---|---|---|---|
+| best steering | 0.717 | 0.800 | 0.067 | -1.25 |
+| best random | 0.833 | 0.767 | 0.067 | -1.00 |
+| best shuffled | 0.800 | 0.783 | 0.033 | -1.00 |
+
+Control gap (steering vs best control): H gap = +0.083 (steering better by 0.083), C gap = +0.033 (steering slightly better), UA gap = +0.034 (steering slightly worse).
+
+Layer 15 shows best overall balance but weakest H reduction.
+
+## 6. Seed Stability
+
+- **IMPORTANT**: Single-seed smoke run (seed=0 only). Seed stability cannot be assessed.
+- `metrics_agg.csv` is identical to `metrics_raw.csv` because aggregation over a single seed produces the same values with NaN std.
+- Multi-seed evaluation (seeds [0, 1, 2]) is planned for IC-4-M2 full run.
+
+## 7. Verdict
+
+**Verdict: `IC4_M1_MODEL_DAMAGE`**
+
+**Reasoning:** MODEL_DAMAGE: correct_answer=0.733 < threshold 0.82. hallucination=0.483, unnecessary_abstention=0.183. seed=0, layer=12, alpha=-1.25
+
+### Verdict Deltas
+
+- `seed`: 0
+- `layer`: 12
+- `best_alpha`: -1.2500
+- `base_h`: 0.9000
+- `base_c`: 0.8000
+- `base_ua`: 0.0330
+- `best_h`: 0.4830
+- `best_c`: 0.7330
+- `best_ua`: 0.1830
+- `hallucination_delta`: 0.4170
+- `correct_answer_delta`: -0.0670
+- `unnecessary_abstention_delta`: 0.1500
+- `random_h`: 0.8500
+- `random_c`: 0.7830
+- `random_ua`: 0.0500
+- `control_gap_h_vs_random`: 0.3670
+- `control_gap_c_vs_random`: -0.0500
+- `control_gap_ua_vs_random`: -0.1330
+- `shuffled_h`: 0.6670
+- `shuffled_c`: 0.7830
+- `shuffled_ua`: 0.0330
+- `control_gap_h_vs_shuffled`: 0.1840
+- `control_gap_c_vs_shuffled`: -0.0500
+- `control_gap_ua_vs_shuffled`: -0.1500
+
+## 8. Recommendation
+
+- Steering reduces hallucination but at unacceptable cost to correctness or unnecessary abstention.
+- Next: IC-4-M2 with finer alpha grid, constrained optimization of H-C-UA tradeoff.
+
+---
+
+*IC-4-M1: Diagnostic Sweep for Activation Steering*
+*Generated by report_writer*

@@ -1,0 +1,50 @@
+============================================================
+IC-4-M4-Generalization: Robustness Validation — FINAL RUN
+============================================================
+Seeds: [0, 1, 2]
+Layers: [11, 12, 13]
+Primary alpha: -1.0
+Extra alphas: [-0.8, -1.2]
+Scenarios: standard / large / hard
+
+============================================================
+SCENARIO: standard — M3 standard (60 samples)
+============================================================
+  seed=0: train 15A+15U, test 30A+30U
+  base: H=0.867 C=0.600
+  layer=12: open_loop H=0.667 C=0.533, oracle H=0.667 C=0.600
+  probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  α=-1.0: real_gate H=0.667 C=0.600 | random H=0.933 C=0.600 | shuffled H=0.800 C=0.600
+  α=-0.8: real_gate H=0.833 C=0.600 | random H=0.933 C=0.600 | shuffled H=0.833 C=0.600
+  α=-1.2: real_gate H=0.667 C=0.600 | random H=1.000 C=0.600 | shuffled H=0.733 C=0.600
+
+============================================================
+SCENARIO: large — M4 large (120 samples)
+============================================================
+  seed=0: train 30A+30U, test 60A+60U
+  base: H=0.817 C=0.550
+  layer=12: open_loop H=0.700 C=0.467, oracle H=0.700 C=0.550
+  probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  α=-1.0: real_gate H=0.700 C=0.550 | random H=0.933 C=0.550 | shuffled H=0.750 C=0.550
+  α=-0.8: real_gate H=0.717 C=0.550 | random H=0.900 C=0.550 | shuffled H=0.817 C=0.550
+  α=-1.2: real_gate H=0.667 C=0.550 | random H=0.950 C=0.550 | shuffled H=0.733 C=0.550
+
+  seed=1: base H=0.817 C=0.583 (no activations; gate not run)
+  seed=2: base H=0.800 C=0.450 (no activations; gate not run)
+
+============================================================
+SCENARIO: hard — M4 hard OOD (extreme entity split, 120 samples)
+============================================================
+  seed=0: train 15A+15U, test 60A+60U
+  base: H=0.850 C=0.583
+  layer=12: open_loop H=0.733 C=0.467, oracle H=0.733 C=0.583
+  probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  α=-1.0: real_gate H=0.733 C=0.583 | random H=0.983 C=0.583 | shuffled H=0.750 C=0.583
+
+  seed=1: base H=0.867 C=0.717 (no activations; gate not run)
+  seed=2: base H=0.867 C=0.633 (no activations; gate not run)
+
+============================================================
+Total time: 11456s (190.9 min)
+Verdict: IC4_M4_GENERALIZATION_ROBUST
+============================================================

@@ -1,0 +1,134 @@
+============================================================
+IC-4-M3-v3: Probe-Gated Steering
+============================================================
+Config: seed=[0], layer=[12], alpha_max=-1.0
+Probe: window=4, model=logistic
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded 30 pairs, dim=896
+
+  Phase A: Training probe on train set...
+    Collected features: X=(30, 896), y pos/neg=15/15
+    Probe: train_acc=1.0000, cv_acc=0.9, AUC=1.0
+
+  Phase B: Probe-gated generation on test set...
+    Open-loop...
+      open_a-1.00: H=0.667 C=0.533 UA=0.067
+    Oracle gate...
+      oracle_a-1.00: H=0.667 C=0.600 UA=0.000
+    Probe gate...
+      probe_gate: H=0.933 C=0.567 UA=0.000
+    Random probe gate...
+      random_probe: H=0.933 C=0.600 UA=0.000
+    Shuffled probe gate...
+      shuffled_probe: H=0.933 C=0.567 UA=0.000
+    layer 12 done in 1296s
+
+Total time: 1831s (30.5 min)
+
+Metrics saved to results_m3_v3\metrics_raw.csv (7 rows)
+Probe telemetry saved to results_m3_v3\probe_telemetry.csv (60 rows)
+Probe evaluation saved to results_m3_v3\probe_evaluation.csv
+Per-sample predictions saved to results_m3_v3\per_sample_predictions.csv
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                H=0.867 C=0.600 UA=0.000
+  prompt_only                         H=0.400 C=0.067 UA=0.200
+  steering_a-1.0                      H=0.667 C=0.533 UA=0.067
+  oracle_gate_a-1.0                   H=0.667 C=0.600 UA=0.000
+  probe_gate_a-1.0                    H=0.933 C=0.567 UA=0.000
+  random_probe_gate_a-1.0             H=0.933 C=0.600 UA=0.000
+  shuffled_probe_gate_a-1.0           H=0.933 C=0.567 UA=0.000
+
+============================================================
+VERDICT: IC4_M3_V3_PROBE_INSUFFICIENT
+============================================================
+Reason: Probe gate (H=0.933) remains far from oracle gate (H=0.667, gap=+0.267). Probe signal alone is insufficient.
+
+Report saved to reports_m3_v3\IC4_M3_V3_PROBE_GATE_REPORT.md
+
+IC-4-M3-v3 complete. Verdict: IC4_M3_V3_PROBE_INSUFFICIENT
+============================================================
+IC-4-M3-v3: Probe-Gated Steering
+============================================================
+Config: seed=[0], layer=[12], alpha_max=-1.0
+Probe: window=4, model=logistic
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 0
+========================================
+  seed=0: train 15A+15U, test 30A+30U
+
+  Base...
+    base: H=0.867 C=0.600 UA=0.000
+
+  Prompt-only...
+    prompt_only: H=0.400 C=0.067 UA=0.200
+
+  LAYER 12
+    Loading activations from results_m3\activations_s0_l12.npz
+    Loaded 30 pairs, dim=896
+
+  Phase A: Training probe on train set...
+    Collected features: X=(30, 896), y pos/neg=15/15
+    Probe: train_acc=1.0000, cv_acc=0.9, AUC=1.0
+
+  Phase B: Probe-gated generation on test set...
+    Open-loop...
+      open_a-1.00: H=0.667 C=0.533 UA=0.067
+    Oracle gate...
+      oracle_a-1.00: H=0.667 C=0.600 UA=0.000
+    Probe gate...
+      probe_gate: H=0.933 C=0.567 UA=0.000
+    Random probe gate...
+      random_probe: H=0.933 C=0.567 UA=0.000
+    Shuffled probe gate...
+      shuffled_probe: H=0.933 C=0.567 UA=0.000
+    layer 12 done in 1287s
+
+Total time: 1813s (30.2 min)
+
+Metrics saved to results_m3_v3\metrics_raw.csv (7 rows)
+Probe telemetry saved to results_m3_v3\probe_telemetry.csv (60 rows)
+Probe evaluation saved to results_m3_v3\probe_evaluation.csv
+Per-sample predictions saved to results_m3_v3\per_sample_predictions.csv
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                H=0.867 C=0.600 UA=0.000
+  prompt_only                         H=0.400 C=0.067 UA=0.200
+  steering_a-1.0                      H=0.667 C=0.533 UA=0.067
+  oracle_gate_a-1.0                   H=0.667 C=0.600 UA=0.000
+  probe_gate_a-1.0                    H=0.933 C=0.567 UA=0.000
+  random_probe_gate_a-1.0             H=0.933 C=0.567 UA=0.000
+  shuffled_probe_gate_a-1.0           H=0.933 C=0.567 UA=0.000
+
+============================================================
+VERDICT: IC4_M3_V3_PROBE_INSUFFICIENT
+============================================================
+Reason: Probe gate (H=0.933) remains far from oracle gate (H=0.667, gap=+0.267). Probe signal alone is insufficient.
+
+Report saved to reports_m3_v3\IC4_M3_V3_PROBE_GATE_REPORT.md
+
+IC-4-M3-v3 complete. Verdict: IC4_M3_V3_PROBE_INSUFFICIENT

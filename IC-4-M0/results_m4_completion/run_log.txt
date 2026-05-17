@@ -1,0 +1,277 @@
+[M4-C] ============================================================
+[M4-C] M4 Completion: Cross-Seed & Cross-Layer Validation
+[M4-C] Seeds: [0, 1, 2], Layers: [11, 12, 13]
+[M4-C] ============================================================
+[M4-C] 
+==================================================
+[M4-C] STAGE 5: Generate Report
+[M4-C] ==================================================
+[M4-C] ============================================================
+[M4-C] M4 Completion: Cross-Seed & Cross-Layer Validation
+[M4-C] Seeds: [0, 1, 2], Layers: [11, 12, 13]
+[M4-C] ============================================================
+[M4-C] 
+==================================================
+[M4-C] STAGE 1: Generate missing M3 data
+[M4-C] ==================================================
+[M4-C] Stage1 - Data s0: already exists, skip.
+[M4-C] Stage1 - Generating M3 data for seed=1...
+[M4-C] Stage1 - Data s1: 30 train (15A+15U), 60 test (30A+30U)
+[M4-C] Stage1 - Generating M3 data for seed=2...
+[M4-C] Stage1 - Data s2: 30 train (15A+15U), 60 test (30A+30U)
+[M4-C] Stage 1 DONE.
+
+[M4-C] 
+==================================================
+[M4-C] STAGE 2: Generate missing activations
+[M4-C] ==================================================
+[M4-C] Model loaded, hidden_dim=896
+[M4-C] Stage2 - Generating activations s0_l11 (30 train)...
+[M4-C] Stage2 - s0_l11: done in 15s (pos=(30, 896), dim=896)
+[M4-C] Stage2 - Acts s0_l12: already exists, skip.
+[M4-C] Stage2 - Generating activations s0_l13 (30 train)...
+[M4-C] Stage2 - s0_l13: done in 14s (pos=(30, 896), dim=896)
+[M4-C] Stage2 - Generating activations s1_l11 (30 train)...
+[M4-C] Stage2 - s1_l11: done in 14s (pos=(30, 896), dim=896)
+[M4-C] Stage2 - Generating activations s1_l12 (30 train)...
+[M4-C] Stage2 - s1_l12: done in 17s (pos=(30, 896), dim=896)
+[M4-C] Stage2 - Generating activations s1_l13 (30 train)...
+[M4-C] Stage2 - s1_l13: done in 16s (pos=(30, 896), dim=896)
+[M4-C] Stage2 - Generating activations s2_l11 (30 train)...
+[M4-C] Stage2 - s2_l11: done in 15s (pos=(30, 896), dim=896)
+[M4-C] Stage2 - Generating activations s2_l12 (30 train)...
+[M4-C] Stage2 - s2_l12: done in 15s (pos=(30, 896), dim=896)
+[M4-C] Stage2 - Generating activations s2_l13 (30 train)...
+[M4-C] Stage2 - s2_l13: done in 14s (pos=(30, 896), dim=896)
+[M4-C] Stage 2 DONE.
+
+[M4-C] 
+==================================================
+[M4-C] STAGE 3/4: Cross-Seed + Cross-Layer Validation
+[M4-C] ==================================================
+[M4-C] Model loaded, 24 layers total
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=0 layer=11
+[M4-C] ==================================================
+[M4-C]   Loaded s0: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.867 C=0.600
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.733 C=0.600
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=1.0000 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.733 C=0.633
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=1.000 C=0.633
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.733 C=0.633
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=0 layer=12
+[M4-C] ==================================================
+[M4-C]   Loaded s0: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.867 C=0.600
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.667 C=0.600
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=1.0000 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.667 C=0.600
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.933 C=0.600
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.800 C=0.600
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=0 layer=13
+[M4-C] ==================================================
+[M4-C]   Loaded s0: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.867 C=0.600
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.700 C=0.600
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=1.0000 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.700 C=0.633
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.933 C=0.600
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.733 C=0.633
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=1 layer=11
+[M4-C] ==================================================
+[M4-C]   Loaded s1: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.967 C=0.500
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.633 C=0.500
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=0.9333 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.633 C=0.500
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.833 C=0.500
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.733 C=0.500
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=1 layer=12
+[M4-C] ==================================================
+[M4-C]   Loaded s1: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.967 C=0.500
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.533 C=0.500
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=1.0000 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.533 C=0.500
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.967 C=0.500
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.700 C=0.500
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=1 layer=13
+[M4-C] ==================================================
+[M4-C]   Loaded s1: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.967 C=0.500
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.533 C=0.500
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=1.0000 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.533 C=0.500
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.967 C=0.500
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.600 C=0.500
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=2 layer=11
+[M4-C] ==================================================
+[M4-C]   Loaded s2: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.900 C=0.600
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.667 C=0.600
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=0.9333 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.667 C=0.600
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.767 C=0.600
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.633 C=0.600
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=2 layer=12
+[M4-C] ==================================================
+[M4-C]   Loaded s2: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.900 C=0.600
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.500 C=0.600
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=1.0000 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.500 C=0.600
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.933 C=0.600
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.500 C=0.600
+[M4-C] 
+==================================================
+[M4-C] VALIDATION: seed=2 layer=13
+[M4-C] ==================================================
+[M4-C]   Loaded s2: train 15A+15U, test 30A+30U
+[M4-C]   base...
+[M4-C]     base:  H=0.900 C=0.600
+[M4-C]     Loaded 30 activation pairs, dim=896
+[M4-C]   oracle_gate...
+[M4-C]     oracle: H=0.533 C=0.600
+[M4-C]   training probe [last_prompt_token]...
+[M4-C]     probe: train_acc=1.0000 cv_acc=1.0000 auc=1.000
+[M4-C]   single_pass_hard_gate (real)...
+[M4-C]     hard:   H=0.533 C=0.600
+[M4-C]   single_pass_hard_gate (random)...
+[M4-C]     random: H=0.867 C=0.600
+[M4-C]   single_pass_hard_gate (shuffled)...
+[M4-C]     shufld: H=0.633 C=0.600
+[M4-C] 
+Validation complete in 10834s (180.6 min)
+[M4-C] Metrics saved to F:\internal_circuit_capital_lab\IC-4-M0\results_m4_completion\m4_completion_metrics.csv (45 rows)
+[M4-C] 
+==================================================
+[M4-C] RESULTS MATRIX
+[M4-C] ==================================================
+[M4-C]   s0_l-1 base                                             H=0.867 C=0.600
+[M4-C]   s0_l-1 base                                             H=0.867 C=0.600
+[M4-C]   s0_l-1 base                                             H=0.867 C=0.600
+[M4-C]   s0_l11 oracle_gate_a-1.0                                H=0.733 C=0.600
+[M4-C]   s0_l11 random_single_pass_hard_gate_a-1.0               H=1.000 C=0.633
+[M4-C]   s0_l11 shuffled_single_pass_hard_gate_a-1.0             H=0.733 C=0.633
+[M4-C]   s0_l11 single_pass_hard_gate_a-1.0                      H=0.733 C=0.633
+[M4-C]   s0_l12 oracle_gate_a-1.0                                H=0.667 C=0.600
+[M4-C]   s0_l12 random_single_pass_hard_gate_a-1.0               H=0.933 C=0.600
+[M4-C]   s0_l12 shuffled_single_pass_hard_gate_a-1.0             H=0.800 C=0.600
+[M4-C]   s0_l12 single_pass_hard_gate_a-1.0                      H=0.667 C=0.600
+[M4-C]   s0_l13 oracle_gate_a-1.0                                H=0.700 C=0.600
+[M4-C]   s0_l13 random_single_pass_hard_gate_a-1.0               H=0.933 C=0.600
+[M4-C]   s0_l13 shuffled_single_pass_hard_gate_a-1.0             H=0.733 C=0.633
+[M4-C]   s0_l13 single_pass_hard_gate_a-1.0                      H=0.700 C=0.633
+[M4-C]   s1_l-1 base                                             H=0.967 C=0.500
+[M4-C]   s1_l-1 base                                             H=0.967 C=0.500
+[M4-C]   s1_l-1 base                                             H=0.967 C=0.500
+[M4-C]   s1_l11 oracle_gate_a-1.0                                H=0.633 C=0.500
+[M4-C]   s1_l11 random_single_pass_hard_gate_a-1.0               H=0.833 C=0.500
+[M4-C]   s1_l11 shuffled_single_pass_hard_gate_a-1.0             H=0.733 C=0.500
+[M4-C]   s1_l11 single_pass_hard_gate_a-1.0                      H=0.633 C=0.500
+[M4-C]   s1_l12 oracle_gate_a-1.0                                H=0.533 C=0.500
+[M4-C]   s1_l12 random_single_pass_hard_gate_a-1.0               H=0.967 C=0.500
+[M4-C]   s1_l12 shuffled_single_pass_hard_gate_a-1.0             H=0.700 C=0.500
+[M4-C]   s1_l12 single_pass_hard_gate_a-1.0                      H=0.533 C=0.500
+[M4-C]   s1_l13 oracle_gate_a-1.0                                H=0.533 C=0.500
+[M4-C]   s1_l13 random_single_pass_hard_gate_a-1.0               H=0.967 C=0.500
+[M4-C]   s1_l13 shuffled_single_pass_hard_gate_a-1.0             H=0.600 C=0.500
+[M4-C]   s1_l13 single_pass_hard_gate_a-1.0                      H=0.533 C=0.500
+[M4-C]   s2_l-1 base                                             H=0.900 C=0.600
+[M4-C]   s2_l-1 base                                             H=0.900 C=0.600
+[M4-C]   s2_l-1 base                                             H=0.900 C=0.600
+[M4-C]   s2_l11 oracle_gate_a-1.0                                H=0.667 C=0.600
+[M4-C]   s2_l11 random_single_pass_hard_gate_a-1.0               H=0.767 C=0.600
+[M4-C]   s2_l11 shuffled_single_pass_hard_gate_a-1.0             H=0.633 C=0.600
+[M4-C]   s2_l11 single_pass_hard_gate_a-1.0                      H=0.667 C=0.600
+[M4-C]   s2_l12 oracle_gate_a-1.0                                H=0.500 C=0.600
+[M4-C]   s2_l12 random_single_pass_hard_gate_a-1.0               H=0.933 C=0.600
+[M4-C]   s2_l12 shuffled_single_pass_hard_gate_a-1.0             H=0.500 C=0.600
+[M4-C]   s2_l12 single_pass_hard_gate_a-1.0                      H=0.500 C=0.600
+[M4-C]   s2_l13 oracle_gate_a-1.0                                H=0.533 C=0.600
+[M4-C]   s2_l13 random_single_pass_hard_gate_a-1.0               H=0.867 C=0.600
+[M4-C]   s2_l13 shuffled_single_pass_hard_gate_a-1.0             H=0.633 C=0.600
+[M4-C]   s2_l13 single_pass_hard_gate_a-1.0                      H=0.533 C=0.600
+[M4-C] 
+==================================================
+[M4-C] STAGE 5: Generate Report
+[M4-C] ==================================================
+[M4-C] Report saved to F:\internal_circuit_capital_lab\IC-4-M0\reports_m4_completion\IC4_M4_COMPLETION_REPORT.md
+[M4-C] 
+Verdict: IC4_M4_COMPLETION_ROBUST
+[M4-C] 
+============================================================
+[M4-C] M4 Completion FINISHED.
+[M4-C] ============================================================

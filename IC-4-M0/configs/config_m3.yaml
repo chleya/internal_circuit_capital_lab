@@ -1,0 +1,29 @@
+# IC-4-M3: Feedback-Controlled Steering — Smoke Config
+# Minimal property validation: per-token adaptive alpha vs open-loop.
+
+model:
+  name: Qwen/Qwen2.5-0.5B-Instruct
+  device: cpu
+  torch_dtype: float32
+
+data:
+  train_size: 30
+  test_size: 60
+  train_path: data_m3/train.jsonl
+  test_path: data_m3/test.jsonl
+
+steering:
+  seeds: [0]
+  layers: [12]
+  alphas: [-1.1, -1.0, -0.9]
+  feedback_base_alpha: -1.0
+  feedback_k_values: [0.5, 1.0, 2.0]
+
+generation:
+  max_new_tokens: 48
+  temperature: 0.0
+  do_sample: false
+
+output:
+  results_dir: results_m3
+  reports_dir: reports_m3
