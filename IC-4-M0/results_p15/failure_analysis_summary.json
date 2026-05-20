@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-05-19T18:20:23.978508",
+  "source": "src/run_p15_failure_analysis.py",
+  "num_configs": 5,
+  "artifacts": [
+    "seed2_layer12",
+    "seed0_layer13"
+  ],
+  "successes": [
+    "seed0_layer12_ref",
+    "seed1_layer12",
+    "seed0_layer11"
+  ]
+}

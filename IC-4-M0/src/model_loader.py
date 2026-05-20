@@ -33,7 +33,7 @@ def load_model_and_tokenizer(
 
     dtype = dtype_map.get(torch_dtype, torch.float16) if torch_dtype else torch.float16
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True, local_files_only=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
@@ -43,7 +43,7 @@ def load_model_and_tokenizer(
         "output_hidden_states": True,
     }
 
-    model = AutoModelForCausalLM.from_pretrained(model_name, **model_kwargs)
+    model = AutoModelForCausalLM.from_pretrained(model_name, local_files_only=True, **model_kwargs)
 
     if device == "auto":
         target = "cuda" if torch.cuda.is_available() else "cpu"

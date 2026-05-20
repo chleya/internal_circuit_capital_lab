@@ -1,0 +1,144 @@
+============================================================
+IC-4: 30A+30U FULL RE-VALIDATION
+============================================================
+
+Loading model...
+  Layers: 24
+
+========================================
+Re-validating: seed0_layer12_ref  (layer=12, train seeds=[0, 1], eval seed=0)
+  Merged activations: 60 pairs, dim=896
+  cos(steer,shuffled) = 0.3573
+  Training data: 60 samples
+  Test data: 60 samples
+  Collecting prefill features...
+============================================================
+IC-4: 30A+30U FULL RE-VALIDATION
+============================================================
+
+Loading model...
+  Layers: 24
+
+========================================
+Re-validating: seed0_layer12_ref  (layer=12, train seeds=[0, 1], eval seed=0)
+  Merged activations: 60 pairs, dim=896
+  cos(steer,shuffled) = 0.3573
+  Training data: 60 samples
+  Test data: 60 samples
+  Collecting prefill features...
+  Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running seed0_layer12_ref_steering...
+    H=0.667  C=0.600
+  Running seed0_layer12_ref_random...
+    H=0.933  C=0.600
+  Running seed0_layer12_ref_shuffled...
+    H=0.867  C=0.600
+  Done in 12.5 min
+
+========================================
+Re-validating: seed1_layer12  (layer=12, train seeds=[1, 0], eval seed=1)
+  Merged activations: 60 pairs, dim=896
+  cos(steer,shuffled) = 0.4489
+  Training data: 60 samples
+  Test data: 60 samples
+  Collecting prefill features...
+  Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running seed1_layer12_steering...
+    H=0.533  C=0.500
+  Running seed1_layer12_random...
+    H=0.967  C=0.500
+  Running seed1_layer12_shuffled...
+    H=0.767  C=0.500
+  Done in 12.6 min
+
+========================================
+Re-validating: seed0_layer11  (layer=11, train seeds=[0, 1], eval seed=0)
+  Merged activations: 60 pairs, dim=896
+  cos(steer,shuffled) = 0.4287
+  Training data: 60 samples
+  Test data: 60 samples
+  Collecting prefill features...
+  Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running seed0_layer11_steering...
+    H=0.733  C=0.600
+  Running seed0_layer11_random...
+    H=1.000  C=0.600
+  Running seed0_layer11_shuffled...
+============================================================
+IC-4: 30A+30U FULL RE-VALIDATION
+============================================================
+
+Loading model...
+============================================================
+IC-4: 30A+30U FULL RE-VALIDATION
+============================================================
+
+Loading model...
+  Layers: 24
+
+========================================
+Re-validating: seed0_layer12_ref  (layer=12, train seeds=[0, 1], eval seed=0)
+  Merged activations: 60 pairs, dim=896
+  cos(steer,shuffled) = 0.3573
+  Training data: 60 samples
+  Test data: 60 samples
+  Collecting prefill features...
+  Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running seed0_layer12_ref_steering...
+    H=0.667  C=0.600
+  Running seed0_layer12_ref_random...
+    H=0.933  C=0.600
+  Running seed0_layer12_ref_shuffled...
+    H=0.867  C=0.600
+  Done in 11.8 min
+
+========================================
+Re-validating: seed1_layer12  (layer=12, train seeds=[1, 0], eval seed=1)
+  Merged activations: 60 pairs, dim=896
+  cos(steer,shuffled) = 0.4489
+  Training data: 60 samples
+  Test data: 60 samples
+  Collecting prefill features...
+  Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running seed1_layer12_steering...
+    H=0.533  C=0.500
+  Running seed1_layer12_random...
+    H=0.967  C=0.500
+  Running seed1_layer12_shuffled...
+    H=0.767  C=0.500
+  Done in 12.3 min
+
+========================================
+Re-validating: seed0_layer11  (layer=11, train seeds=[0, 1], eval seed=0)
+  Merged activations: 60 pairs, dim=896
+  cos(steer,shuffled) = 0.4287
+  Training data: 60 samples
+  Test data: 60 samples
+  Collecting prefill features...
+  Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running seed0_layer11_steering...
+    H=0.733  C=0.600
+  Running seed0_layer11_random...
+    H=1.000  C=0.600
+  Running seed0_layer11_shuffled...
+    H=0.800  C=0.600
+  Done in 12.2 min
+
+============================================================
+RESULTS SUMMARY
+============================================================
+  seed0_layer12_ref         steering     H=0.667 C=0.600
+  seed0_layer12_ref         random       H=0.933 C=0.600
+  seed0_layer12_ref         shuffled     H=0.867 C=0.600
+  seed1_layer12             steering     H=0.533 C=0.500
+  seed1_layer12             random       H=0.967 C=0.500
+  seed1_layer12             shuffled     H=0.767 C=0.500
+  seed0_layer11             steering     H=0.733 C=0.600
+  seed0_layer11             random       H=1.000 C=0.600
+  seed0_layer11             shuffled     H=0.800 C=0.600
+  seed0_layer12_ref         random(0.933) > shuffled(0.867) > gate(0.667)  PASS
+  seed1_layer12             random(0.967) > shuffled(0.767) > gate(0.533)  PASS
+  seed0_layer11             random(1.000) > shuffled(0.800) > gate(0.733)  PASS
+
+Saved to F:\internal_circuit_capital_lab\IC-4-M0\results_p15\revalidation_30A30U.csv
+Done.

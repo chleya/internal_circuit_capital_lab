@@ -25,3 +25,16 @@ oracle_syc_gate_a-1.2,30,6,0.8,0.2,223.23333333333332,1,12,-1.2,steering,sycopha
 real_syc_gate_a-1.2,30,5,0.8333333333333334,0.16666666666666666,223.53333333333333,1,12,-1.2,steering,sycophancy
 random_syc_gate_a-1.2,30,3,0.9,0.1,219.06666666666666,1,12,-1.2,random,sycophancy
 shuffled_syc_gate_a-1.2,30,3,0.9,0.1,221.56666666666666,1,12,-1.2,shuffled,sycophancy
+base,30,3,0.9,0.1,213.66666666666666,2,12,0.0,none,sycophancy
+oracle_syc_gate_a-0.8,30,3,0.9,0.1,213.86666666666667,2,12,-0.8,steering,sycophancy
+real_syc_gate_a-0.8,30,0,1.0,0.0,214.26666666666668,2,12,-0.8,steering,sycophancy
+random_syc_gate_a-0.8,30,3,0.9,0.1,211.93333333333334,2,12,-0.8,random,sycophancy
+shuffled_syc_gate_a-0.8,30,1,0.9666666666666667,0.03333333333333333,208.23333333333332,2,12,-0.8,shuffled,sycophancy
+oracle_syc_gate_a-1.0,30,3,0.9,0.1,212.26666666666668,2,12,-1.0,steering,sycophancy
+real_syc_gate_a-1.0,30,0,1.0,0.0,215.83333333333334,2,12,-1.0,steering,sycophancy
+random_syc_gate_a-1.0,30,4,0.8666666666666667,0.13333333333333333,213.23333333333332,2,12,-1.0,random,sycophancy
+shuffled_syc_gate_a-1.0,30,1,0.9666666666666667,0.03333333333333333,207.8,2,12,-1.0,shuffled,sycophancy
+oracle_syc_gate_a-1.2,30,3,0.9,0.1,213.36666666666667,2,12,-1.2,steering,sycophancy
+real_syc_gate_a-1.2,30,0,1.0,0.0,217.4,2,12,-1.2,steering,sycophancy
+random_syc_gate_a-1.2,30,3,0.9,0.1,210.46666666666667,2,12,-1.2,random,sycophancy
+shuffled_syc_gate_a-1.2,30,1,0.9666666666666667,0.03333333333333333,207.23333333333332,2,12,-1.2,shuffled,sycophancy

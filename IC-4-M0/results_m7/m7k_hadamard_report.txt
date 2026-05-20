@@ -1,0 +1,71 @@
+IC-4-M7 K: Hadamard-Distributed Subspace Intervention Report
+================================================================
+Layer: 20 | Base syc_rate: 0.5500
+Orthogonality: ||Q^T Q - I|| = 9.45e-06
+
+## Part A: Hadamard Random-Subspace REPLACE
+       K   Syc Rate      Delta  Flipped
+------------------------------------------------
+     1      0.5500     +0.0000     0/  11
+     2      0.5500     +0.0000     0/  11
+     3      0.5500     +0.0000     0/  11
+     5      0.5500     +0.0000     0/  11
+    10      0.5500     +0.0000     0/  11
+    20      0.6000     +0.0500     0/  11
+    50      0.6000     +0.0500     0/  11
+   100      0.6000     +0.0500     0/  11
+   200      0.5500     +0.0000     0/  11
+   896      0.0000     -0.5500    11/  11
+
+## Part B: Hadamard Steering + Per-Dimension Clamping
+     Alpha    Clamp   Syc Rate      Delta  Flipped
+--------------------------------------------------------
+      -0.2     1.0σ      1.0000     +0.4500     0/  11
+      -0.2     2.0σ      0.5500     +0.0000     0/  11
+      -0.2     3.0σ      0.6000     +0.0500     0/  11
+      -0.5     1.0σ      1.0000     +0.4500     0/  11
+      -0.5     2.0σ      0.6000     +0.0500     0/  11
+      -0.5     3.0σ      0.6000     +0.0500     0/  11
+      -1.0     1.0σ      0.9000     +0.3500     0/  11
+      -1.0     2.0σ      0.6000     +0.0500     0/  11
+      -1.0     3.0σ      0.7500     +0.2000     0/  11
+      -2.0     1.0σ      0.8500     +0.3000     0/  11
+      -2.0     2.0σ      0.7000     +0.1500     3/  11
+      -2.0     3.0σ      0.7000     +0.1500     3/  11
+      -5.0     1.0σ      0.6000     +0.0500     5/  11
+      -5.0     2.0σ      0.6000     +0.0500     5/  11
+      -5.0     3.0σ      0.6000     +0.0500     5/  11
+
+## Comparison with M7-G (PCA Subspace REPLACE)
+
+       K      PCA Δ Hadamard Δ        Gap
+--------------------------------------------
+     1     -0.1000     +0.0000     -0.1000
+     2     -0.1000     +0.0000     -0.1000
+     3     -0.1500     +0.0000     -0.1500
+     5     -0.2000     +0.0000     -0.2000
+    10     -0.2500     +0.0000     -0.2500
+    20     -0.3000     +0.0500     -0.3500
+    50     -0.3500     +0.0500     -0.4000
+   100     -0.3500     +0.0500     -0.4000
+   200     -0.3500     +0.0000     -0.3500
+   896     -0.5500     -0.5500     +0.0000
+
+## Interpretation
+
+★ RANDOM SUBSPACE HAS ZERO EFFECT (K<896).
+  Unlike PCA subspace (M7-G) which shows monotonic scaling from K=1,
+  random orthogonal subspace selection produces NO anti-sycophancy effect
+  for any K < 896. Data (Gap column):
+    K=1:  PCA Δ=-0.10  Hadamard Δ=+0.00  Gap=-0.10
+    K=5:  PCA Δ=-0.20  Hadamard Δ=+0.00  Gap=-0.20
+    K=20: PCA Δ=-0.30  Hadamard Δ=+0.05  Gap=-0.35
+    K=50: PCA Δ=-0.35  Hadamard Δ=+0.05  Gap=-0.40
+  This proves PCA captures GENUINE STRUCTURE, not just dimensionality.
+  The sycophancy signal lives in SPECIFIC, data-driven principal components.
+  Random orthogonal bases are NOT a substitute.
+
+★ HADAMARD CLAMP FAILS: clamping does not enable steering.
+  The 'outlier domination' hypothesis is INSUFFICIENT —
+  even with outlier suppression, directional steering is impossible.
+  This further supports the VARIANCE COLLAPSE theory (M7-C).

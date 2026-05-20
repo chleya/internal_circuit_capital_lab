@@ -1,0 +1,17 @@
+IC-4-M7 F: Generation-Stage Timing Scan Report
+================================================================
+Layer: 20 | Base syc_rate: 0.5500
+
+  Start Step   Syc Rate          Δ
+------------------------------------
+           >=0     0.9500    +0.4000
+           >=1     0.9500    +0.4000
+           >=2     0.9500    +0.4000
+           >=3     0.9500    +0.4000
+           >=5     0.9500    +0.4000
+           >=8     0.9500    +0.4000
+          >=12     0.9500    +0.4000
+         never     0.5500    +0.0000
+
+★ NO TIMING EFFECT: REPLACE is equally (in)effective at all steps.
+  Timing does not matter for this intervention method.

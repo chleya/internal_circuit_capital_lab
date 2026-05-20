@@ -51,6 +51,7 @@ def _log(msg, log_file=None):
     if log_file:
         with open(log_file, "a", encoding="utf-8") as f:
             f.write(msg + "\n")
+            f.flush()
 
 
 def _find_transformer_layer(model, layer_idx):

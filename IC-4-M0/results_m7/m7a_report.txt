@@ -1,0 +1,41 @@
+IC-4-M7 A: Component-Level Patching Report
+================================================================
+Base syc_rate: 0.5500
+
+ Layer  Component   Syc Rate          Δ    Flipped
+--------------------------------------------------
+  L14        full     0.4500    -0.1000     2/11
+  L14        attn     0.5500    +0.0000     0/11
+  L14         mlp     0.5500    +0.0000     0/11
+  L15        full     0.5500    +0.0000     0/11
+  L15        attn     0.5500    +0.0000     0/11
+  L15         mlp     0.3000    -0.2500     5/11
+  L16        full     0.5500    +0.0000     0/11
+  L16        attn     0.5500    +0.0000     0/11
+  L16         mlp     0.5500    +0.0000     0/11
+  L17        full     0.5500    +0.0000     0/11
+  L17        attn     0.5000    -0.0500     1/11
+  L17         mlp     0.5500    +0.0000     0/11
+  L18        full     0.5500    +0.0000     0/11
+  L18        attn     0.5500    +0.0000     0/11
+  L18         mlp     0.4000    -0.1500     3/11
+  L19        full     0.5500    +0.0000     0/11
+  L19        attn     0.5500    +0.0000     0/11
+  L19         mlp     0.4500    -0.1000     2/11
+  L20        full     0.5500    +0.0000     0/11
+  L20        attn     0.5000    -0.0500     1/11
+  L20         mlp     0.3000    -0.2500     5/11
+  L21        full     0.5500    +0.0000     0/11
+  L21        attn     0.5000    -0.0500     1/11
+  L21         mlp     0.5500    +0.0000     0/11
+  L22        full     0.5500    +0.0000     0/11
+  L22        attn     0.5000    -0.0500     1/11
+  L22         mlp     0.4000    -0.1500     3/11
+
+        attn: best L17 Δ=-0.0500 avg Δ=-0.0222
+         mlp: best L15 Δ=-0.2500 avg Δ=-0.1000
+        full: best L14 Δ=-0.1000 avg Δ=-0.0111
+
+★ Patched attn & mlp are less effective than full residual.
+  Full patch: L14 Δ=-0.1000
+  Only full residual substitution achieves full anti-sycophancy effect.

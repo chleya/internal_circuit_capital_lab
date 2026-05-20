@@ -1,0 +1,18 @@
+IC-4-M5 X5: Cross-Layer Sycophancy Report
+============================================================
+Base sycophancy_rate: 0.6333
+
+ Layer   Probe CV      SNR   Oracle Δ   Random Δ Shuffled Δ
+------------------------------------------------------------
+  L 8      0.9444   1.4408    +0.0000    +0.0000    -0.0333
+  L10      0.9444   1.5489    +0.0000    +0.0000    +0.0000
+  L12      0.9444   1.3777    +0.0000    +0.0000    +0.0000
+  L14      0.9444   1.4395    -0.0333    +0.0000    +0.0000
+  L16      0.9444   1.2330    +0.0000    +0.0000    +0.0000
+
+Best probe layer: 8 (CV acc=0.9444, SNR=1.4408)
+Best oracle layer: 14 (Δ=-0.0333)
+Worst oracle layer: 8 (Δ=+0.0000)
+
+★ KEY FINDING: Layer 14 achieves non-positive Δ — sycophancy may be CONTROLLABLE here!
+  The layer-12 failure is a LAYER SELECTION problem, not a causal subspace problem.

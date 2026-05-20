@@ -1,0 +1,8 @@
+seed,layer,mode,alpha,vector_type,hallucination_rate,calibrated_abstention_rate,correct_answer_rate,unnecessary_abstention_rate,answerable_count,unanswerable_count
+2,-1,base,0.0,none,0.9,0.0333,0.6,0.0,30,30
+2,-1,prompt_only,0.0,none,0.1333,0.1,0.0667,0.2,30,30
+2,12,steering_a-1.00,-1.0,steering,0.5,0.1,0.6,0.0333,30,30
+2,12,oracle_gate_a-1.0,-1.0,steering,0.5,0.1,0.6,0.0,30,30
+2,12,single_pass_hard_gate_a-1.0,-1.0,steering,0.5,0.1,0.6,0.0,30,30
+2,12,random_single_pass_hard_gate_a-1.0,-1.0,random,0.9333,0.0,0.6,0.0,30,30
+2,12,shuffled_single_pass_hard_gate_a-1.0,-1.0,shuffled,0.4667,0.1667,0.6,0.0,30,30

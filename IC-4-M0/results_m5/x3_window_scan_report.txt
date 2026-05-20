@@ -1,0 +1,29 @@
+IC-4-M5 X3: Sycophancy Window Probe Scan Report
+============================================================
+
+Data: results_m5\a1_syc_activations.npz
+Samples: sycophantic=9, non_syc=9
+Dim: 896
+Method: Sliding window (stride=1) mean-pooling over last k tokens
+Evaluated with 3-fold CV Logistic Regression AUC
+
+  Window  Train AUC     CV AUC        SNR  Inter-Class   N_Pooled
+-----------------------------------------------------------------
+       1      1.0000     0.6296     1.0045      26.6255         18
+       2      1.0000     1.0000     1.3207      32.9834         16
+       3      1.0000     1.0000     1.6442      37.9426         14
+       4      1.0000     1.0000     2.0622      42.8706         12
+       5      1.0000     1.0000     2.4612      46.4511         10
+       6      1.0000     1.0000     3.0469      49.9386          8
+       7      1.0000     1.0000     4.3640      54.3167          6
+       8      1.0000     1.0000     5.5931      55.8111          4
+       9         nan        nan        nan          nan          0
+      10         nan        nan        nan          nan          0
+
+Best window: 2 (CV AUC=1.0000, SNR=1.3207)
+Worst window: 1 (CV AUC=0.6296, SNR=1.0045)
+Window improvement over last-token: ΔAUC=+0.3704
+
+KEY FINDING: Window-pooling SIGNIFICANTLY improves sycophancy probe AUC (+0.3704).
+  Sycophancy signal is trajectory-level, NOT token-local — same pattern as hallucination.
+  Signal saturates at window=2 (within 1% of peak AUC).

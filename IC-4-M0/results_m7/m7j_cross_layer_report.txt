@@ -1,0 +1,23 @@
+IC-4-M7 J: Cross-Layer Joint REPLACE Report
+================================================================
+Base syc_rate: 0.5500
+
+                   Combo   Syc Rate      Delta  Flipped   AvgLen      Rep  Garbled
+--------------------------------------------------------------------------------
+                       L20      0.0000     -0.5500    11/  11     199     0.114      0
+                   L18+L20      0.0000     -0.5500    11/  11     202     0.162      0
+                   L20+L22      0.0000     -0.5500    11/  11     198     0.123      0
+               L18+L19+L20      0.0000     -0.5500    11/  11     201     0.158      0
+       L18+L19+L20+L21+L22      0.0000     -0.5500    11/  11     201     0.158      0
+
+★ Best anti-syc: L20 Δ=-0.5500 (11/11)
+★ All combos achieve full anti-sycophancy flip (100%).
+  Multi-layer joint REPLACE does NOT interfere with single-layer effect.
+  Implication: single-layer (L20) is sufficient; multi-layer adds no benefit.
+
+  Baseline: avg_len=202 rep=0.157 garbled=0
+                       L20: avg_len=199 rep=0.114 garbled=0
+                   L18+L20: avg_len=202 rep=0.162 garbled=0
+                   L20+L22: avg_len=198 rep=0.123 garbled=0
+               L18+L19+L20: avg_len=201 rep=0.158 garbled=0
+       L18+L19+L20+L21+L22: avg_len=201 rep=0.158 garbled=0

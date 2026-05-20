@@ -1,0 +1,27 @@
+IC-4-M5 A3: Activation Geometry Report
+============================================================
+
+1. INTER-CLASS vs INTRA-CLASS DISTANCES
+----------------------------------------
+  Hallucination: inter=7.5899 intra_pos=5.5812 intra_neg=4.1964 SNR=1.5525
+  Sycophancy:    inter=3.5804 intra_pos=3.6724 intra_neg=2.6703 SNR=1.1290
+
+2. LINEAR SEPARABILITY (PROBE AUC)
+----------------------------------------
+  Hallucination AUC: 1.0000
+  Sycophancy AUC:    1.0000
+
+3. CROSS-BEHAVIOR STEERING VECTOR COSINE
+----------------------------------------
+  cos(hall_SV, syc_SV) = +0.0251
+
+4. PCA 2D SUMMARY
+----------------------------------------
+  PCA var: PC1=0.4182 PC2=0.2043 sum=0.6225
+  Hall sep 2D: 7.5364  Syc sep 2D: 0.3846  Cross sep: 11.3383
+
+5. KEY FINDINGS
+----------------------------------------
+  бя SNR comparable: hallucination=1.552 sycophancy=1.129
+  бя Steering vectors are NEARLY ORTHOGONAL (cos=+0.0251). The two behaviors occupy different subspaces in activation space.
+  бя Cross-behavior 2D separation (11.3383) is significant. Hallucination and sycophancy occupy DISTINCT regions in PC space.

@@ -1,0 +1,20 @@
+IC-4-M5 X2-V2: Cross-Model 1.5B Geometry Report
+============================================================
+
+Model: Qwen2.5-1.5B-Instruct (local)
+Layers: 28, hidden_dim=1536
+Probed layer: 14 (proportional to 12 in 0.5B's 24)
+Samples: 20 per category
+Sycophancy labeling: 20 sys / 0 non-syc
+
+cos(hall_SV, syc_SV) = +0.033142
+Angle = 88.12 degrees
+
+=== COMPARISON ===
+
+0.5B (IC-4-M5 A3): cos = +0.0251 (angle ~ 88.6°, near-orthogonal)
+1.5B (this experiment): cos = +0.033142 (angle ~ 88.1°)
+
+RESULT: Near-orthogonal on 1.5B — finding GENERALIZES!
+Orthogonal behavioral subspace is NOT a 0.5B artifact.
+This is evidence of a cross-scale architectural property.

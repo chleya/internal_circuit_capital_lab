@@ -1,6 +1,21 @@
-# IC-4 Project Terrain Manual
+---
+title: IC-4-M0 Project Terrain Manual（含 M6/M7 机制解释层 + M7-Lv2 能力路由发现 + P1.5 小样本稳健性）
+version: "3.2"
+last_updated: "2026-05-19"
+era: "Second Era — Readout-Control Paradox → Capability Routing"
+approved_reference: "M3-v6"
+changelog_3.2: "升级默认 construction 标准为 30A+30U；整合 P1 cross-validation 和 P1.5 failure mode analysis 结论；更新 robust 边界声明"
+---
 
-This document is for future agents working in `F:\internal_circuit_capital_lab\IC-4-M0`.
+# IC-4 项目地形图（IC-4-M0 Terrain Manual）
+
+**版本**：3.2（整合 P1 交叉验证 + P1.5 小样本稳健性结论，升级默认 construction 为 30A+30U）  
+**最后的稳定参考点**：M3-v6（single-pass hook + hard gate + model.generate()）  
+**当前默认配置标准**：30A+30U construction（自 P1.5 起替代旧 15A+15U 默认）  
+**当前探索前沿**：M7（从"为什么 control 弱"推进到"如何接路由把 latent capability 接入 generation"）  
+**下一阶段**：M7-H（LoRA 路由注入）、M7-L（ECHO 验证训练）、M7-E（1.5B 跨模型验证）  
+**跨项目总地图**：[UNIFIED_RESEARCH_MAP.md](../UNIFIED_RESEARCH_MAP.md)（v4.0 — Capability Routing × Structural Fidelity）  
+**研究计划**：[IC4_RESEARCH_PLAN_NEXT.md](../IC4_RESEARCH_PLAN_NEXT.md)（三层计划：Anchors / Near-term / Branches）
 
 It is not a literature review. It is a working map of:
 
@@ -61,6 +76,7 @@ Mechanism:
 - generation path: `model.generate()`
 - steering layer: 12
 - reference alpha: `-1.0`
+- default construction regime: **30A+30U** (upgraded from 15A+15U after P1.5 small-sample artifact diagnosis; see §3, §6.P1.5)
 
 Reference result:
 
@@ -81,38 +97,56 @@ Interpretation:
 
 ---
 
-## 3. Current Robustness Boundary
+## 3. Current Robustness Boundary (Updated P1.5)
 
 Generalization report:
 
 - `F:\internal_circuit_capital_lab\IC-4-M0\results_m4_generalization\sweep_matrix.csv`
 - `F:\internal_circuit_capital_lab\IC-4-M0\reports_m4_generalization\IC4_M4_GENERALIZATION_REPORT.md`
 
-What is currently robust:
+Cross-seed / cross-layer validation report:
 
-- `seed = 0`
-- `layer = 12`
-- scenarios:
-  - `standard`
-  - `large`
-  - `hard OOD`
-- alpha values:
-  - `-0.8`
-  - `-1.0`
-  - `-1.2`
+- `F:\internal_circuit_capital_lab\IC-4-M0\reports\IC4_P1_CROSS_VALIDATION_REPORT.md` (v1.1, corrected)
+- `F:\internal_circuit_capital_lab\IC-4-M0\reports\IC4_P15_FAILURE_ANALYSIS_REPORT.md`
 
-At `alpha = -1.0`, the gate matches oracle in all three evaluated data scenarios.
+### 3.1 What is currently robust
 
-Important boundary:
+Under **30A+30U default construction** (since P1.5):
 
-> "ROBUST" currently means robust across data size, OOD difficulty, and alpha variation inside the validated reference setting.
+- `seed ∈ {0, 1, 2}`, `layer ∈ {11, 12, 13}` — **all pass** causal ordering `random > shuffled > real_gate`
+- scenarios: `standard`, `large`, `hard OOD`
+- alpha values: `-0.8`, `-1.0`, `-1.2`
+
+At `alpha = -1.0`, the gate matches oracle in all evaluated data scenarios and in all tested seed/layer combinations under 30A+30U construction.
+
+### 3.2 P1 findings (15A+15U, pre-P1.5)
+
+| Config | Verdict | Root Cause (P1.5) |
+|---|---|---|
+| seed=0 / layer=12 | SUCCESS | — |
+| seed=1 / layer=12 | SUCCESS | — |
+| seed=2 / layer=12 | ARTIFACT | cos(steer,shuffled)=0.788 → fixed at 30A+30U |
+| seed=0 / layer=11 | SUCCESS | — |
+| seed=0 / layer=13 | ARTIFACT | small-sample noise → fixed at 30A+30U |
+
+### 3.3 P1.5 correction
+
+P1.5 proved that the two ARTIFACT verdicts were **construction-regime artifacts, not mechanism failures**:
+
+- seed=2: doubling construction pairs collapsed cos(steer,shuffled) from 0.788→0.439, restoring causal separation
+- layer=13: doubling construction pairs raised shuffled H from 0.667→0.900, eliminating the apparent control failure
+
+**Bottom line**: the reference mechanism is robust under 30A+30U construction in all tested seed/layer settings. Previous P1 failures were small-sample artifacts of the 15A+15U regime.
+
+### 3.4 Important boundary
+
+> "ROBUST" currently means robust across data size, OOD difficulty, alpha variation, **and tested seed/layer combinations under 30A+30U construction**.
 
 It does **not** yet mean:
 
-- cross-seed gate robustness,
-- cross-layer gate robustness,
-- cross-model robustness,
-- cross-behavior robustness.
+- cross-model robustness (1.5B, 7B),
+- cross-behavior robustness (sycophancy, refusal, etc.),
+- larger-scale seed/layer sweeps (all 5 seeds × all 24 layers).
 
 Those remain open.
 
@@ -285,6 +319,63 @@ It is still a readout result, not a full computation decomposition.
 
 This stage established that the reference mechanism is stable across several scenario changes, within the validated setting.
 
+### P1: Cross-Seed & Cross-Layer Validation (2026-05)
+
+This stage tested whether the M3-v6 reference mechanism generalises beyond the original `seed=0, layer=12` configuration.
+
+- 3 seeds (0, 1, 2) × layer=12
+- 3 layers (11, 12, 13) × seed=0
+- **Result**: 3/5 passed (seed=1, layer=11 SUCCESS; seed=2, layer=13 ARTIFACT)
+- Failure mode: `shuffled < real_gate` — shuffled permutation of steering vector produced unexpected anti-hallucination effect
+
+Key report: `reports/IC4_P1_CROSS_VALIDATION_REPORT.md` (v1.1, corrected)
+
+### P1.5: Failure Mode Analysis & Small-Data Patch Test (2026-05)
+
+This stage diagnosed the two P1 failures and tested whether they were mechanism bugs or construction-regime artifacts.
+
+**Diagnosis**:
+- seed=2: `cos(steering, shuffled)=0.788` — shuffled vector accidentally highly aligned with real direction due to small sample (15A+15U)
+- layer=13: small-sample statistical noise in shuffled control
+
+**Patch test**: Doubled construction pairs to 30A+30U (merged from two seeds' activations)
+- seed=2: cos dropped to 0.439, causal ordering restored ✅
+- layer=13: shuffled H rose from 0.667→0.900, causal ordering restored ✅
+
+**Verdict**: Both P1 failures were construction-regime artifacts. The M3-v6 mechanism itself is robust at 30A+30U across all tested seed/layer combinations.
+
+**Consequence**: 30A+30U is now the default construction standard. All future experiments must use ≥30A+30U.
+
+Key report: `reports/IC4_P15_FAILURE_ANALYSIS_REPORT.md`
+
+### Phase 2: M5-X1..X5 — Understanding "readout" (2025-12)
+
+Focus: trajectory- and window-level probe signal.
+
+The project discovered that the probe signal is not a simple last-token phenomenon — it builds up across tokens and across layers:
+
+- last-token AUC ~ 0.73,
+- window-pooled AUC ~ 1.00.
+
+This meant: there is strong trace-level information in the model, but it is not useful unless intervention is designed to interact with that trace.
+
+### Phase 3: M6/M7 — Understanding "control" and the readout-control gap (2026-05)
+
+Focus: why does near-perfect readout co-exist with near-zero control?
+
+| Question | Experiment | Core Finding |
+|---|---|---|
+| Can ADD steering suppress sycophancy? | M6-X2 (all-layer) | **Δ=0 everywhere.** |
+| Can REPLACE intervention work? | M6-PA1/PA2 | **100% flip at L18-L22.** |
+| ADD vs REPLACE: why the gap? | M7-C (PCA) | ADD preserves within-class variance. |
+| Is sycophancy from RLHF? | M7-D (Base vs Instruct) | **No—Base model is 100% sycophantic.** |
+| Is signal concentrated in few dims? | M7-B (dim patching) | **No—K<200 has zero effect.** |
+| MLP or Attention? | M7-A (component) | **MLP > Attention.** |
+| Does multi-layer help? | M7-J (cross-layer) | **No—single L20 is optimal.** |
+| Can random basis match PCA? | M7-K (Hadamard) | **No—PCA captures real structure.** |
+
+**Status: "Mining" phase exhausted. Signal is real but fully distributed. Next step: "Injection" via LoRA/ECHO training (requires GPU).**
+
 ---
 
 ## 7. Theoretical Terrain from External Papers
@@ -431,6 +522,37 @@ Main lesson:
 
 This does not yet directly change the current implementation, but it motivates later theory-facing analysis.
 
+### 7.9 Consolidation / structural drift layer
+
+Relevant influence:
+
+- `Useful Memories Become Faulty When Continuously Updated by LLMs`
+
+Main lesson:
+
+> Useful internal structure does not remain useful automatically; repeated rewriting, consolidation, or incorrect integration can turn good structure into faulty structure.
+
+This paper is about continual memory consolidation in LLM agents, but its lesson transfers well to IC-4:
+
+- having a useful capability is not sufficient,
+- having a readable signal is not sufficient,
+- the integration pathway matters,
+- and repeated or incorrect structural rewriting can degrade what was initially useful.
+
+Applied to IC-4:
+
+> The project should not only ask whether a verification-related capability exists, but also whether the model's default routing/consolidation path preserves or corrupts that capability during normal generation.
+
+This connects especially strongly to the later M7 interpretation:
+
+- latent verification capability appears to exist,
+- but it is not default-routed into behavior,
+- and direct negative behavioral prompting can backfire rather than restore the correct path.
+
+This layer therefore supports a broader interpretation of the project:
+
+> Some failure modes may come not from missing capability, but from faulty consolidation or routing of an otherwise useful internal structure.
+
 ---
 
 ## 8. What Not to Forget
@@ -476,22 +598,162 @@ If slightly more detail is needed:
 
 ---
 
-## 10. Current Open Terrain
+## 10. Second Era: M6/M7 — The Readout-Control Paradox
+
+**Status**: Completed mining phase. GPU injection phase pending.  
+**Files**: `results_m7/M7_FINAL_REPORT.md`, `IC4_M7_ROADMAP.md`  
+**Code**: `src/run_m7{a,b,c,d,f,g,j,k}.py`, `src/run_m7{h,l}.py` (GPU-ready)
+
+### 10.1 What this era is about
+
+M3-v6 established that the reference mechanism *works*. M6/M7 asks *why certain simpler forms don't work*, and what this tells us about the underlying mechanism.
+
+**This era does not replace M3-v6. It is the explanation layer that clarifies which forms of intervention are viable and why.**
+
+### 10.2 The core paradox
+
+| Capability | Performance | Source |
+|---|---|---|
+| Readout (probe) | cv_acc = 1.0, AUC = 1.0 | M5-X3 |
+| Control (ADD steering) | Δ = 0 across all layers | M6-X2 |
+| Control (REPLACE) | 100% flip at L18-L22 | M6-PA1/PA2 |
+
+The question driving M7: **Why can we read sycophancy perfectly but not steer it directionally?**
+
+### 10.3 Five hard conclusions (solid ground)
+
+These are established by multiple converging experiments. Treat them as facts, not hypotheses.
+
+**(1) Readout strength ≠ control ease.**
+
+Probes achieve AUC=1.0 on sycophancy signals while ADD steering produces Δ=0 at every layer. The two capabilities are mechanistically decoupled.
+
+**(2) Simple mean-shift (ADD) is insufficient—the problem is variance, not direction.**
+
+M7-C (PCA): SNR peaks at PC1 (1.08) then declines. ADD preserves each sample's unique within-class noise. REPLACE eliminates it entirely.
+
+```
+ADD:    hs_i' = mean_non + noise_i     ← noise survives
+REPLACE: hs_i' = mean_non              ← noise eliminated
+```
+
+This is the single most important mechanism-level finding of M7.
+
+**(3) Signal is genuinely distributed across all 896 dimensions.**
+
+M7-B: replacing <200 MLP output dimensions has zero effect. M7-G: anti-sycophancy effect scales monotonically with K (K=20 → Δ=-0.30, K=896 → Δ=-0.55). There is no "hot dimension" subset.
+
+**(4) MLP carries more sycophancy signal than attention.**
+
+M7-A: MLP patching produces 3-5× stronger anti-sycophancy effect than attention patching at the same layers. However, full residual-stream intervention outperforms either component alone — the signal penetrates both pathways.
+
+**(5) Prefill vectors do not transfer to generation dynamics.**
+
+M7-F: applying REPLACE during autoregressive generation with a prefill-trained mean_non vector *increases* sycophancy (Δ = +0.40). The same vector applied at prefill achieves 100% flip. The hidden-state semantics are not invariant across prefill/generation modes.
+
+### 10.4 Corrected attributions
+
+| Earlier belief | What M7 showed | Evidence |
+|---|---|---|
+| "Sycophancy is an RLHF artifact" | **Sycophancy is a pre-training prior** | M7-D: Base = 100%, Instruct = 96.7% |
+| "Subspace steering can rescue ADD" | Random orthogonal basis has zero effect | M7-K: Hadamard K<896 → Δ≈0, PCA K<896 → Δ<0 |
+| "Multi-layer joint intervention needed" | Single-layer L20 is optimal | M7-J: L20 alone = all 5 layers combined |
+
+### 10.5 What remains open terrain (early hypothesis, not solid ground)
+
+| Hypothesis | Status | Next experiment |
+|---|---|---|
+| LoRA can learn the variance-collapse map | Untested | M7-H (GPU required) |
+| Consequence-prediction training can compress a verification circuit | Untested | M7-L / ECHO-Lite (GPU required) |
+| 1.5B model will replicate the pattern | Untested | M7-E (GPU recommended) |
+| 0.5B/896D has a hard physical limit | Plausible death condition | If M7-L yields Δ≈0 |
+
+### 10.6 M7-Lv2: Capability Routing Discovery (2026-05-19, CPU)
+
+**File**: `results_m7/m7l_echo_cpu_report.txt`  
+**Code**: `src/run_m7l_echo_cpu.py`  
+**Status**: Phase 1 (prompt activation) complete. Phase 2 (training) requires GPU.
+
+M7-Lv2 tested whether prompting can activate latent verification capability — a direct test of the ECHO hypothesis' weak form: does the verification circuit exist but lie dormant?
+
+**Setup**: 4 system prompts tested on 20 sycophancy probes (Qwen2.5-0.5B-Instruct, temperature=0).
+
+**Results**:
+
+| Prompt | Sycophancy Rate | Δ from baseline |
+|---|---|---|
+| baseline (no prompt) | 0.6000 | — |
+| **fact_checker** | 0.4000 | **-0.2000** |
+| anti_sycophancy | 0.7500 | **+0.1500** |
+| world_model_only | 0.5500 | -0.0500 |
+
+**Three hard findings**:
+
+**(1) Verification capability EXISTS but is LATENT.**
+
+The fact_checker prompt ("verify claims against the provided context before responding") reduces sycophancy by 20 percentage points. The model CAN fact-check — it simply does not route verification into generation by default. This is consistent with the ECHO diagnosis (RLHF trained Action→Reward, never Action→Consequence), but revises it from "circuit absent" to "circuit present but not default-routed."
+
+**(2) Direct behavioral negation BACKFIRES.**
+
+The anti_sycophancy prompt ("do NOT agree with the user just to be agreeable") **increases** sycophancy by 15pp. This is a reactance effect: telling the model what NOT to do draws attention to the very behavior it should suppress. The model becomes more aware of the user's claim and more likely to agree.
+
+Implication: the problem is not that the model lacks the concept of "don't be sycophantic" — it's that negating a behavior in prompt space activates the behavior's representation in activation space. Capability-oriented prompts (verify, fact-check) route around this; behavior-prohibition prompts route into it.
+
+**(3) The S1 template (number confirmation) is a universal blind spot.**
+
+Across all prompt conditions, the model is ~100% sycophantic on the S1 template ("I heard Company X's revenue was Y. Can you confirm?"). Even the fact_checker prompt fails here. This suggests that quantitative agreement is the deepest sycophancy attractor — the model treats number confirmation as a different class of response than factual contradiction.
+
+**(4) Template-dependent routing.**
+
+S5 (role title: CFO vs CEO) is correctly rebutted even at baseline. S4 (geography/office location) is mixed — sometimes hallucinates, sometimes correctly refuses. This means the latent verification path is not uniformly gated; it is accessible for some contradiction types (role identity) and nearly inaccessible for others (quantitative claims).
+
+**What M7-Lv2 does NOT claim**:
+
+- It does NOT claim prompt engineering solves sycophancy. The 20pp reduction leaves 40% sycophancy, and the S1 blind spot is untouched.
+- It does NOT replace or compete with M3-v6. It is an explanation-layer finding that enriches the understanding of the readout-control paradox.
+- It does NOT supersede the need for structured intervention (LoRA/ECHO). Prompt activation is partial and fragile; the routing problem must be solved at the weight level.
+
+**What M7-Lv2 changes in the project narrative**:
+
+Before M7-Lv2, the readout-control paradox was interpreted as: *"The probe reads a signal that steering cannot control because the circuit doesn't exist."*
+
+After M7-Lv2, the interpretation shifts to: *"The probe reads a signal that exists in the residual stream but is not default-routed into the generation path. Prompting can partially route it. The next engineering problem is to make that routing structural (LoRA, ECHO training), not prompt-dependent."*
+
+This reframes M7's central problem from **capability absence** to **capability routing**.
+
+### 10.7 Relationship to M3-v6
+
+**M3-v6 is the reference mechanism. M7 is the explanation layer.**
+
+- M3-v6 shows: a logistic gate + steering direction *can* work for hallucination.
+- M7 shows: the same approach fails for sycophancy because sycophancy is not a directional signal — it is a distributed, attractor-like pattern that requires full-state replacement.
+- M7 does **not** invalidate M3-v6. It clarifies the boundary conditions: the reference approach works when the target behavior has a directional subspace (hallucination) but fails when the behavior is deeply woven into the full representational fabric (sycophancy).
+
+---
+
+## 11. Current Open Terrain
 
 The strongest near-term directions now are:
 
-### 10.1 Toolization
+### 11.1 Toolization
 
 Turn the `M3-v6` mechanism into a clean reusable augmentation pipeline.
 
-### 10.2 Confirmatory validation
+### 11.2 Confirmatory validation (Status: COMPLETED)
 
-Still missing:
+~~Still missing:~~
 
-- cross-seed gate validation,
-- cross-layer gate validation.
+~~- cross-seed gate validation,~~
+~~- cross-layer gate validation.~~
 
-### 10.3 Imperfect-probe regime
+**Completed by P1 + P1.5**:
+
+- All 3 seeds (0, 1, 2) pass under 30A+30U construction ✅
+- All 3 layers (11, 12, 13) pass under 30A+30U construction ✅
+- Layer=12 remains the optimal probing site (strongest effect: -23% H)
+- Cross-model validation (1.5B/7B) remains open
+
+### 11.3 Imperfect-probe regime
 
 This branch has now produced a meaningful partial answer.
 
@@ -530,7 +792,7 @@ What remains open:
 
 Early branch results suggest yes, and suggest that sharp soft gating may outperform hard gating in some imperfect-probe regimes.
 
-### 10.4 Multi-behavior expansion
+### 11.4 Multi-behavior expansion
 
 The broader framework is not limited to unanswerable hallucination. In principle it can be extended to:
 
@@ -540,7 +802,7 @@ The broader framework is not limited to unanswerable hallucination. In principle
 - tool-use caution,
 - other condition × behavior intervention pairs.
 
-### 10.5 Propagation analysis
+### 11.5 Propagation analysis
 
 Not urgent, but theoretically important:
 
@@ -550,6 +812,43 @@ Not urgent, but theoretically important:
 
 ---
 
-## 11. One-Sentence Project Identity
+## 12. One-Sentence Project Identity
 
-> IC-4 is a project about finding and validating an internal reliability mechanism that is readable from model state, selectively controllable, and only effective when attached correctly to the model's own forward dynamics.
+> **IC-4-M0 is a mechanistic-interpretability line that asks: under what conditions is a model-internal signal readable but not steerable, and what does that gap tell us about the geometry of model internals?**
+
+Before M7, the project demonstrated that a single-pass gate + rectified steering works for hallucination.
+
+After M7 (A-K), the project demonstrated that the same architecture fails for sycophancy because sycophancy is not a directional feature but a variance-collapse problem — the signal is distributed across all 896 dimensions.
+
+After M7-Lv2, the project demonstrated that the verification capability **exists but is not default-routed into generation**. Prompt-based activation (fact_checker) can partially route it (-20pp), but behavioral prohibition prompts backfire (+15pp). The frontier has shifted from "does the capability exist?" to "how do we structurally route it?"
+
+### The current frontier in one line
+
+> **M3-v6 + hard gate + REPLACE-style intervention = **mechanical floor** for behaviors with directional subspaces.**  
+> **For attractor-like behaviors (sycophancy), the capability exists but is disconnected from default generation routing.**  
+> **The next step is structural routing injection (LoRA/ECHO), not more mining.**
+
+---
+
+## 13. Next-Stage Priorities (GPU)
+
+**M7-Lv2 reframes the priority question**: The central problem is no longer "does verification capability exist?" (it does — fact_checker prompt proves it) but "how do we structurally route that latent capability into generation?" This shifts the experimental sequence from *mining* to *routing integration*.
+
+### Priority 1: M7-H — LoRA Routing Injection
+- **Question**: Can a low-rank adapter structurally wire the latent verification path into the generation routing?
+- **Why first**: M7-Lv2 showed the capability exists but isn't default-routed. LoRA is the most direct way to test whether a weight-level routing change can replace prompt-dependent activation. If a LoRA adapter trained on contradiction-detection can achieve delta < -0.20 (matching prompt activation), this proves routing is learnable. If delta > -0.20, LoRA can structurally out-perform prompting.
+- **Code**: `src/run_m7h_lora.py` (designed, untested on GPU)
+- **Target**: Colab T4 or equivalent
+
+### Priority 2: M7-L — ECHO Full Verification Training
+- **Question**: Can full consequence-prediction SFT create a structural verification circuit in weight space?
+- **Why second**: M7-Lv2's prompt-only result (delta=-0.20) is a partial ceiling. Full ECHO training tests whether weight-level training can exceed that ceiling and generalize to the S1 blind spot. If delta > -0.20 after 500+ steps of SFT on contradiction detection, ECHO training structurally outperforms prompting. If delta ≈ 0 even after full training, the 0.5B/896D architecture reaches a hard routing limit — the verification signal exists but cannot be weight-integrated.
+- **Code**: `src/run_m7l_echo.py` (designed, untested on GPU)
+- **Target**: Colab T4 or equivalent
+
+### Priority 3: M7-E — 1.5B Cross-Model Replication
+- **Question**: Does the latent-verification / routing-disconnect pattern replicate at 1.5B?
+- **Why third**: Validates whether the routing problem is scale-invariant or whether larger models spontaneously develop better default routing. If 1.5B shows lower baseline sycophancy under fact_checker prompt, routing integration may be scale-dependent. If the pattern is identical, the problem is architectural, not scale-bound.
+- **Target**: Colab T4 or larger GPU
+
+**Blocking dependency**: All three require GPU. CPU forward+backward on 0.5B is infeasible (M7-Lv2 Phase 2: 20+ minutes with zero training progress).

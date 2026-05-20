@@ -1,0 +1,91 @@
+============================================================
+IC-4-M3-v6: Single-Pass Hook-Based Gate (Minimal Validation)
+============================================================
+Config: seed=[1], layer=[12], alpha_max=-1.0
+Probe: ['last_prompt_token'], threshold=0.5
+Pipeline: SINGLE-PASS HOOK-BASED GATE (no two-pass artifact)
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+============================================================
+IC-4-M3-v6: Single-Pass Hook-Based Gate (Minimal Validation)
+============================================================
+Config: seed=[1], layer=[12], alpha_max=-1.0
+Probe: ['last_prompt_token'], threshold=0.5
+Pipeline: SINGLE-PASS HOOK-BASED GATE (no two-pass artifact)
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 1
+========================================
+  seed=1: train 15A+15U, test 30A+30U
+
+  --- BASELINES ---
+  Base...
+============================================================
+IC-4-M3-v6: Single-Pass Hook-Based Gate (Minimal Validation)
+============================================================
+Config: seed=[1], layer=[12], alpha_max=-1.0
+Probe: ['last_prompt_token'], threshold=0.5
+Pipeline: SINGLE-PASS HOOK-BASED GATE (no two-pass artifact)
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+SEED 1
+========================================
+  seed=1: train 15A+15U, test 30A+30U
+
+  --- BASELINES ---
+  Base...
+    base: H=0.967 C=0.500 UA=0.000
+  Prompt-only...
+    prompt_only: H=0.367 C=0.133 UA=0.233
+
+  LAYER 12
+    Loading activations from results_m3\activations_s1_l12.npz
+    Loaded 30 pairs, dim=896
+    Single-pass open-loop a=-1.00...
+      single_pass_ol: H=0.533 C=0.500 UA=0.133
+    Oracle gate...
+      oracle: H=0.533 C=0.500 UA=0.000
+
+  --- Probe Training: last_prompt_token ---
+    Phase A: Training probe [last_prompt_token]...
+      Collected: X=(30, 896), y pos/neg=15/15
+      Probe [last_prompt_token]: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+
+    LAYER 12 — SINGLE-PASS HOOK-BASED HARD GATE [last_prompt_token]
+    Single-pass hard gate (steering vector)...
+      real_gate: H=0.533 C=0.500 UA=0.000
+    Single-pass hard gate (random vector)...
+      random: H=0.967 C=0.500
+    Single-pass hard gate (shuffled vector)...
+      shuffled: H=0.733 C=0.500
+    layer done in 795s
+
+Total time: 1896s (31.6 min)
+
+Metrics saved to results_m3_v6_p1_seed1\metrics_raw.csv (7 rows)
+
+============================================================
+COMPARISON TABLE
+============================================================
+  base                                          H=0.967 C=0.500
+  prompt_only                                   H=0.367 C=0.133
+  steering_a-1.00                               H=0.533 C=0.500
+  oracle_gate_a-1.0                             H=0.533 C=0.500
+  single_pass_hard_gate_a-1.0                   H=0.533 C=0.500
+  random_single_pass_hard_gate_a-1.0            H=0.967 C=0.500
+  shuffled_single_pass_hard_gate_a-1.0          H=0.733 C=0.500
+
+============================================================
+VERDICT: IC4_M3_V6_SINGLE_PASS_SUCCESS
+============================================================
+Reason: C anomaly eliminated (C=0.500 vs base C=0.500). H=0.533 matches oracle H=0.533. Single-pass hook-based gate achieves the goal.
+
+Report saved to reports_m3_v6_p1_seed1\IC4_M3_V6_SINGLE_PASS_GATE_REPORT.md
+
+IC-4-M3-v6 complete. Verdict: IC4_M3_V6_SINGLE_PASS_SUCCESS

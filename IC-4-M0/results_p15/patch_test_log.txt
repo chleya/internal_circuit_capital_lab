@@ -1,0 +1,68 @@
+============================================================
+IC-4 P1.5: SMALL-DATA ROBUSTNESS PATCH TEST
+============================================================
+Output dir: F:\internal_circuit_capital_lab\IC-4-M0\results_p15
+Configs: ['seed2_layer12_30A30U', 'seed0_layer13_30A30U']
+
+Loading model (Qwen/Qwen2.5-0.5B-Instruct)...
+  Total layers: 24
+
+========================================
+PATCH TEST: seed2_layer12_30A30U
+  Construction: train seeds=[0, 2], layer=12
+  Evaluation: test seed=2
+========================================
+    s0_l12: 30 pairs
+    s2_l12: 30 pairs
+  Merged activations: 60 pos + 60 neg, dim=896
+  Vector norms: steer=1.0000, random=1.0000, shuffled=1.0000
+  cos(steer, shuffled) = 0.4388
+  Merged training data: 60 samples (30A + 30U)
+  Test data: 60 samples
+  Collecting prefill features for probe training...
+    X=(60, 896), y pos/neg=30/30
+    Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running real gate...
+    real_gate: H=0.500 C=0.600
+  Running random gate...
+    random: H=0.933 C=0.600
+  Running shuffled gate...
+    shuffled: H=0.600 C=0.600
+  Patch config done in 800s (13.3 min)
+
+========================================
+PATCH TEST: seed0_layer13_30A30U
+  Construction: train seeds=[0, 1], layer=13
+  Evaluation: test seed=0
+========================================
+    s0_l13: 30 pairs
+    s1_l13: 30 pairs
+  Merged activations: 60 pos + 60 neg, dim=896
+  Vector norms: steer=1.0000, random=1.0000, shuffled=1.0000
+  cos(steer, shuffled) = 0.4512
+  Merged training data: 60 samples (30A + 30U)
+  Test data: 60 samples
+  Collecting prefill features for probe training...
+    X=(60, 896), y pos/neg=30/30
+    Probe: train_acc=1.0000, cv_acc=1.0, AUC=1.0
+  Running real gate...
+    real_gate: H=0.700 C=0.600
+  Running random gate...
+    random: H=0.933 C=0.600
+  Running shuffled gate...
+    shuffled: H=0.900 C=0.600
+  Patch config done in 778s (13.0 min)
+
+============================================================
+PATCH TEST RESULTS SUMMARY
+============================================================
+  patch_seed2_layer12_30A30U_real               H=0.500 C=0.600 vec=steering
+  patch_seed2_layer12_30A30U_random             H=0.933 C=0.600 vec=random
+  patch_seed2_layer12_30A30U_shuffled           H=0.600 C=0.600 vec=shuffled
+  patch_seed0_layer13_30A30U_real               H=0.700 C=0.600 vec=steering
+  patch_seed0_layer13_30A30U_random             H=0.933 C=0.600 vec=random
+  patch_seed0_layer13_30A30U_shuffled           H=0.900 C=0.600 vec=shuffled
+
+Results saved to F:\internal_circuit_capital_lab\IC-4-M0\results_p15\patch_test_results.csv
+
+Done. ============================================================

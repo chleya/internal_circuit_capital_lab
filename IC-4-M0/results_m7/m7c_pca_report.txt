@@ -1,0 +1,53 @@
+IC-4-M7 C: PCA Dimensionality Analysis Report
+================================================================
+Layer: 20 | N syc=22 N non=8
+
+## 1. Variance Concentration
+  PCs for 50% variance: 2
+  PCs for 80% variance: 4
+  PCs for 90% variance: 8
+  PCs for 95% variance: 12
+  PCs for 99% variance: 21
+
+## 2. Mean-Difference Direction Analysis
+  Inter-class distance: 10.0758
+  PC1 explained variance: 46.08%
+  Mean-diff projection onto PC1: 0.6783
+  Variance along mean-diff: 53.0968 (28.35% of total)
+  Mean-diff vs random direction: 243.26x
+
+## 3. SNR by Dimensionality
+  top-   1: SNR=1.0839
+  top-   2: SNR=0.9389
+  top-   3: SNR=0.9753
+  top-   5: SNR=0.9177
+  top-  10: SNR=0.8866
+  top-  20: SNR=0.8600
+  top-  50: SNR=0.8529
+  top- 100: SNR=0.8529
+  top- 200: SNR=0.8529
+  top- 500: SNR=0.8529
+  top- 896: SNR=0.8529
+
+## 4. Interpretation (REVISED)
+  Full-space SNR: 0.8529
+  
+  ★ COUNTER-HYPOTHESIS: SNR PEAKS at PC1 (1.08), then DECREASES with more dims.
+    The signal IS concentrated. The problem is NOT dimensionality.
+    
+  ★ REAL CAUSE of ADD-vs-REPLACE gap: WITHIN-CLASS VARIANCE
+    ADD:  hs_i + diff = mean_non + (hs_i - mean_syc)  → preserves noise
+    REPLACE: hs_i → mean_non                          → eliminates noise
+    Each sycophantic sample has unique noise around the mean.
+    ADD shifts the mean but preserves the noise → samples still "look sycophantic".
+    REPLACE collapses all samples to the same state → behavior flips.
+    
+  ★ IMPLICATION: Control requires VARIANCE COLLAPSE, not just mean-shift.
+    This explains why single-direction steering is fundamentally insufficient —
+    even though the class difference IS concentrated in PC1.
+    
+  ★ WHY DOES THIS MATTER FOR IC-5?
+    A deployable control method must either:
+    (a) Learn a denoising map: hs_syc → hs_nonsyc (removes within-class variance)
+    (b) Collapse the sycophancy subspace by training the model to have less variance
+    LoRA adapter or anti-sycophancy fine-tuning can achieve (a) or (b).

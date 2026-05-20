@@ -1,0 +1,29 @@
+IC-4-M6 X1-V2: Fast Token-Level Causal Tracing Report
+============================================================
+N=30, layers=[6, 8, 10, 12, 14]
+
+Layer 6: peak AUC=1.0000 @ pos=36
+  AUC>0.75 first in CONTEXT at pos 16
+  Question avg AUC=1.0000
+
+Layer 8: peak AUC=1.0000 @ pos=36
+  AUC>0.75 first in CONTEXT at pos 16
+  Question avg AUC=1.0000
+
+Layer 10: peak AUC=1.0000 @ pos=36
+  AUC>0.75 first in CONTEXT at pos 16
+  Question avg AUC=1.0000
+
+Layer 12: peak AUC=1.0000 @ pos=36
+  AUC>0.75 first in CONTEXT at pos 16
+  Question avg AUC=1.0000
+
+Layer 14: peak AUC=1.0000 @ pos=36
+  AUC>0.75 first in CONTEXT at pos 16
+  Question avg AUC=1.0000
+
+GLOBAL BEST: Layer 6, pos 36, AUC=1.0000
+  The peak is in the CONTEXT region — decision is encoded during context processing.
+
+★ Decision signal emerges at context pos 16
+  The model commits to a sycophantic/non-sycophantic stance BEFORE reading the question.
