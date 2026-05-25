@@ -1,13 +1,42 @@
-__pycache__/
+# Temporary files
 *.pyc
-*.pyo
-.pytest_cache/
-.venv/
-venv/
-*.egg-info/
-dist/
-build/
-.ipynb_checkpoints/
+__pycache__/
+*.log
 .DS_Store
-Thumbs.db
-*.npz
+
+# Large datasets
+IC-4-M0/data_position_sensitivity/
+IC-4-M0/data/
+
+# Results directories (too many files)
+IC-4-M0/results_*/
+!IC-4-M0/results_*/results.json
+
+# Model checkpoints and data
+IC-4-M0/checkpoints/
+IC-4-M0/checkpoint/
+IC-4-M0/checkpoint_*/
+IC-4-M0/results_*/checkpoint_*/
+IC-4-M0/results_*/checkpoint/
+IC-4-M0/results/
+
+# Personal
+new-5/
+*.md~
+*~
+"*.md"
+
+# Local debug files
+IC-4-M0/src/_debug_*.py
+IC-4-M0/src/debug_*.py
+
+# Personal files
+new-5/
+*.md~
+*~
+
+# Training artifacts
+*.pth
+*.pt
+*.safetensors
+*.bin

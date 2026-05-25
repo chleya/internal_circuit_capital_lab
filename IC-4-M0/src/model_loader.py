@@ -12,6 +12,7 @@ def load_model_and_tokenizer(
     model_name: str = "Qwen/Qwen2.5-0.5B-Instruct",
     device: str = "auto",
     torch_dtype: Optional[str] = None,
+    **kwargs,
 ) -> Tuple[AutoModelForCausalLM, AutoTokenizer]:
     """
     Load a causal LM and its tokenizer.
@@ -20,6 +21,7 @@ def load_model_and_tokenizer(
         model_name: HuggingFace model ID or local path.
         device: "auto", "cuda", or "cpu".
         torch_dtype: "float16", "float32", "bfloat16", or None (auto).
+        **kwargs: Additional kwargs passed to AutoModelForCausalLM.from_pretrained().
 
     Returns:
         (model, tokenizer)
@@ -42,6 +44,7 @@ def load_model_and_tokenizer(
         "trust_remote_code": True,
         "output_hidden_states": True,
     }
+    model_kwargs.update(kwargs)
 
     model = AutoModelForCausalLM.from_pretrained(model_name, local_files_only=True, **model_kwargs)
 

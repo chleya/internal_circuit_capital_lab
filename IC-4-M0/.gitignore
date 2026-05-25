@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.temp
+run_log.txt
+
+# Kaggle outputs (redundant with reports)
+kaggle_p1_results/
+# Large NPZ trajectory files (exceed GitHub limits)
+results_t0_syc_contrast/*.npz
+results_t0_trajectory/*.npz

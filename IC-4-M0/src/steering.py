@@ -50,6 +50,37 @@ def compute_shuffled_vector(pos_acts: np.ndarray, neg_acts: np.ndarray, seed: in
     return compute_steering_vector(shuffled_pos, shuffled_neg)
 
 
+def compute_norm_matched_orthogonal(target_vector: np.ndarray, seed: int = 456) -> np.ndarray:
+    """
+    Generate a vector with the same norm as target_vector but strictly
+    orthogonal direction. Used to decompose directional vs energetic
+    contributions in impulse experiments.
+
+    Method:
+    1. Generate a random vector
+    2. Gram-Schmidt: project out the target direction
+    3. Renormalize to match target_vector's norm
+
+    Args:
+        target_vector: (D,) reference direction (e.g., v_syc).
+        seed: random seed.
+
+    Returns:
+        orthogonal vector of shape (D,) with same L2 norm as target_vector
+        and dot product ~0 with target_vector.
+    """
+    rng = np.random.RandomState(seed)
+    dim = target_vector.shape[0]
+    v_rand = rng.randn(dim).astype(np.float32)
+    target_norm = np.linalg.norm(target_vector)
+    target_unit = target_vector / (target_norm + 1e-8)
+    proj = np.dot(v_rand, target_unit) * target_unit
+    v_ortho = v_rand - proj
+    v_ortho = v_ortho / (np.linalg.norm(v_ortho) + 1e-8)
+    v_ortho = v_ortho * target_norm
+    return v_ortho
+
+
 def _make_steering_hook(vector: np.ndarray, alpha: float, target_device: torch.device):
     """Create a forward hook that adds alpha * vector to hidden states."""
 
